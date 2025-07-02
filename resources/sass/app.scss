@@ -1,0 +1,6 @@
+@use '_variables' as vars with (       
+  $primary: #007bff,
+  $font-family-base: 'Nunito, sans-serif'
+);
+@use 'bootstrap/scss/bootstrap' as bs;
+@use 'admin-lte/dist/css/adminlte' as adminlte;

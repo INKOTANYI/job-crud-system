@@ -1,0 +1,15 @@
+id	company_name	logo	description	location	province_id	district_id	sector_id	category_id	created_at	updated_at
+1	Rwanda Tech Solutions Kigali	logos/tech_solutions.png	A leading tech company in Rwanda.	Kigali City Gasabo Remera	1	1	12	1	2025-05-23 12:12:35	2025-05-23 12:15:55
+3	EduRwanda	logos/edurwanda.png	Education consultancy firm.	Huye	2	3	3	3	2025-05-23 12:12:36	2025-05-23 12:12:36
+4	FinanceCorp Rwanda	logos/financecorp.png	Financial services provider.	Musanze	3	4	4	4	2025-05-23 12:12:36	2025-05-23 12:12:36
+5	EngiBuild Rwanda	logos/engibuild.png	Engineering and construction firm.	Rubavu	4	5	5	5	2025-05-23 12:12:36	2025-05-23 12:12:36
+6	TechTrend Innovations	logos/techtrend.png	Innovative tech solutions.	Kigali	1	1	1	1	2025-05-23 12:12:36	2025-05-23 12:12:36
+7	MediCare Rwanda	logos/medicare.png	Medical care services.	Huye	2	3	3	2	2025-05-23 12:12:36	2025-05-23 12:12:36
+8	LearnEasy Academy	logos/learneasy.png	Educational services.	Musanze	3	4	4	3	2025-05-23 12:12:36	2025-05-23 12:12:36
+9	BankPro Rwanda	logos/bankpro.png	Banking services.	Rubavu	4	5	5	4	2025-05-23 12:12:36	2025-05-23 12:12:36
+10	ConstructElite	logos/constructelite.png	Construction services.	Kigali	1	1	1	5	2025-05-23 12:12:37	2025-05-23 12:12:37
+11	SoftDev Rwanda	logos/softdev.png	Software development firm.	Huye	2	3	3	1	2025-05-23 12:12:37	2025-05-23 12:12:37
+12	HealthPlus Clinic	logos/healthplus.png	Health clinic.	Musanze	3	4	4	2	2025-05-23 12:12:37	2025-05-23 12:12:37
+13	EduFuture Rwanda	logos/edufuture.png	Future education solutions.	Rubavu	4	5	5	3	2025-05-23 12:12:37	2025-05-23 12:12:37
+14	MoneyWise Bank	logos/moneywise.png	Banking and finance.	Kigali	1	1	1	4	2025-05-23 12:12:37	2025-05-23 12:12:37
+15	BuildTech Rwanda	logos/buildtech.png	Tech-driven construction.	Huye	2	3	3	5	2025-05-23 12:12:37	2025-05-23 12:12:37

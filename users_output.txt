@@ -1,0 +1,2 @@
+id	name	email	email_verified_at	password	remember_token	created_at	updated_at
+1	Admin User	test@example.com	NULL	$2y$12$624.WeQB6AKHs8hLDbnise8oEGdnTYR3svrdTAUu7qG5Gl8JTELIG	NULL	2025-05-23 12:12:30	2025-05-23 12:12:30
