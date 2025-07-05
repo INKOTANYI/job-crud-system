@@ -1,0 +1,76 @@
+-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: ascom
+-- ------------------------------------------------------
+-- Server version	10.4.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jobs` (
+  `job_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `job_title` varchar(255) NOT NULL,
+  `job_description` text NOT NULL,
+  `job_qualification` text NOT NULL,
+  `jobcategory_id` bigint(20) unsigned DEFAULT NULL,
+  `company_id` bigint(20) unsigned NOT NULL,
+  `province_id` bigint(20) unsigned NOT NULL,
+  `district_id` bigint(20) unsigned NOT NULL,
+  `sector_id` bigint(20) unsigned NOT NULL,
+  `department_id` bigint(20) unsigned NOT NULL,
+  `job_deadline` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `job_type` varchar(255) NOT NULL DEFAULT 'full_time',
+  `featured` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`job_id`),
+  KEY `jobs_company_id_foreign` (`company_id`),
+  KEY `jobs_province_id_foreign` (`province_id`),
+  KEY `jobs_district_id_foreign` (`district_id`),
+  KEY `jobs_sector_id_foreign` (`sector_id`),
+  KEY `jobs_department_id_foreign` (`department_id`),
+  KEY `jobs_jobcategory_id_foreign` (`jobcategory_id`),
+  CONSTRAINT `jobs_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `jobs_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`),
+  CONSTRAINT `jobs_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`),
+  CONSTRAINT `jobs_jobcategory_id_foreign` FOREIGN KEY (`jobcategory_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `jobs_province_id_foreign` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`),
+  CONSTRAINT `jobs_sector_id_foreign` FOREIGN KEY (`sector_id`) REFERENCES `sectors` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+INSERT INTO `jobs` VALUES (1,'Finance and Administration Assistant','The Greater Virunga Transboundary Collaboration Executive Secretariat (GVTC-ES) is seeking to recruit a qualified and motivated individual to join its team as a Finance and Administration Assistant. This is an exciting opportunity to be part of a dynamic intergovernmental organization dedicated to collaborative wildlife conservation and tourism development across the Central Albertine Rift.','Key Responsibilities\r\n\r\nThe Finance and Administration Assistant will be responsible for supporting GVTC-ES in the areas of finance, administration, procurement, and fleet management. Key duties include:\r\n\r\nVerifying financial reports and preparing bank reconciliations\r\nManaging procurement and inventory systems\r\nCoordinating logistics for travel, events, and meetings\r\nAdministering office records, supplies, and correspondence\r\nMonitoring fleet usage, maintenance, and documentation\r\nPreparing compliance and operational reports\r\nQualifications and Experience\r\n\r\nBachelor’s degree or diploma in Finance, Accounting, Business Administration, or a related field\r\n2–5 years of experience in a similar role, preferably with an international organization\r\nKnowledge of donor-funded projects, IFRS/IPSAS standards, and financial systems such as Sun System\r\nProficiency in English and French is required\r\nSkills and Competencies\r\n\r\nExcellent attention to detail and strong organizational skills\r\nAbility to manage time effectively and meet deadlines\r\nStrong communication and interpersonal abilities\r\nAbility to maintain confidentiality and work in a multicultural environment\r\nThe detailed vacancy announcement can be found on the Greater Virunga Transboundary Collaboration  Website  under the Tender and Careers',NULL,11,1,1,1,1,'2025-07-12','2025-06-21 16:29:33','2025-06-21 16:29:33','full_time',0),(2,'WAITER / WAITRESS','Be familiar with the companies Health & Safety Policies & Procedure and any other related laws.\r\nAdheres to all Health & Safety regulations, Policies & Procedures and ensure that all staff adheres to these regulation, policies & procedures.\r\nEnsure a strong Health & Safety culture, directing and overseeing workplace safety programs to regulation compliance, employee awareness and an accident-free workplace guided by the Rwandan Labor Law and the companies Policies & Procedures.\r\nEnsures that all potential and real hazards are reported and reduced immediately.\r\nFully understands the hotel’s fire and emergency Policies & Procedures.\r\nEnsures that emergency procedures are practiced and enforced to provide for the security and safety of guests and employees.\r\nStimulates and encourages a general awareness of health and safety.\r\nAnticipates possible and probable hazards and conditions and either corrects them','High School diploma, vocational training/Culinary Art, Restaurant Management and/or 5-years work experience.\r\nExperience with hotel operations is an added advantage.\r\nFluent in English language.\r\nUnderstanding of French, Swahili and other languages is an added advantage\r\nExperience in using POS billing and micros systems',NULL,12,1,1,1,1,'2025-07-12','2025-06-21 18:28:31','2025-06-21 18:28:31','full_time',0),(3,'Barman','Responsible for the efficient operation and high quality service of Hotel’s bar outlets.\r\nMaintain product knowledge of all drinks, snack and wine lists in order to advise and make recommendations to guests.\r\nUse every opportunity to maximize sales.\r\nServe beverage items with flair and professionalism according to company standards.\r\nEnsure all service areas and equipment are kept clean and organized.\r\nEnsure revenue for the shift is accurately accounted for, with cash/charge summary being completed to balance daily activities.\r\nLog and inform your Manager of any system problems\r\nFollow policies and procedures outlined in the Company Brand Standards Manual, Departmental Service Standards / Procedures Manual and Company Policy Manuals.\r\nComplete all duties, and ensure a concise hand over.','Degree/Diploma/ Certificate in Hospitality or Restaurant management\r\nMinimum 3 years’ experience in similar position\r\nExcellent customer service skills and the ability to communicate well with Guest\r\nAbility to provide Guests with up-to-date information and directions\r\nAbility to resolve team conflicts\r\nFluent in English.\r\nUnderstanding of French, Swahili and other languages is an added advantage\r\nExperience in using POS billing and micros systems.',NULL,7,2,2,2,2,'2025-07-08','2025-06-21 18:37:57','2025-06-21 18:37:57','full_time',0),(5,'Temporary Driver','Concern Worldwide seeking a reliable and experienced Temporary Driver to support our team with transportation needs. The selected candidate will be responsible for safely transporting staff and materials, ensuring vehicle maintenance, and adhering to all traffic and organizational regulations. The person will be based in Huye.\r\n\r\nThe temporary driver will report directly to the Operations Officer .The contract is for 6 months with possibilities of extension','Rwanda national\r\nPossesses a valid national driving permit of category, B, D\r\nMust be physically fit\r\nAble to work long hours\r\nAt least secondary education\r\nProficient in English language\r\nAt least 5 years of driving experience in an International NGO\r\nStrong sense of responsibility, professionalism, and punctuality',NULL,5,1,1,12,3,'2025-07-11','2025-06-22 10:25:37','2025-06-22 10:25:37','full_time',0),(6,'Temporary Driver','Concern Worldwide seeking a reliable and experienced Temporary Driver to support our team with transportation needs. The selected candidate will be responsible for safely transporting staff and materials, ensuring vehicle maintenance, and adhering to all traffic and organizational regulations. The person will be based in Huye.\r\n\r\nThe temporary driver will report directly to the Operations Officer .The contract is for 6 months with possibilities of extension','Rwanda national\r\nPossesses a valid national driving permit of category, B, D\r\nMust be physically fit\r\nAble to work long hours\r\nAt least secondary education\r\nProficient in English language\r\nAt least 5 years of driving experience in an International NGO\r\nStrong sense of responsibility, professionalism, and punctuality',NULL,5,1,1,12,3,'2025-07-11','2025-06-22 10:29:46','2025-06-22 10:29:46','full_time',0),(7,'Temporary Driver','Concern Worldwide seeking a reliable and experienced Temporary Driver to support our team with transportation needs. The selected candidate will be responsible for safely transporting staff and materials, ensuring vehicle maintenance, and adhering to all traffic and organizational regulations. The person will be based in Huye.\r\n\r\nThe temporary driver will report directly to the Operations Officer .The contract is for 6 months with possibilities of extension','Rwanda national\r\nPossesses a valid national driving permit of category, B, D\r\nMust be physically fit\r\nAble to work long hours\r\nAt least secondary education\r\nProficient in English language\r\nAt least 5 years of driving experience in an International NGO\r\nStrong sense of responsibility, professionalism, and punctuality',NULL,5,1,1,12,3,'2025-07-11','2025-06-22 10:29:51','2025-06-22 10:29:51','full_time',0),(8,'ACR-Call for application for professional accounting training and internship','At ACR-Accounting Academy, we don’t just teach accounting; we empower you to excel. Backed by ACR-Online Accounting Services Ltd, a leading Rwandan accounting firm established under the Rwandan Company Act, we bring real-world expertise to your learning journey. Since 2019, we’ve supported small and medium-sized businesses with accounting, bookkeeping, tax preparation, and auditing services, giving us deep insights into the skills employers demand.','Registration: Free\r\nTraining Fee: Rwf 200,000 (a small investment for lifelong opportunities)\r\nFlexible payment plans are available—contact us to learn more!\r\n\r\nRegister Now\r\n\r\nSpaces are limited, so don’t wait! Register today to secure your spot and take the first step toward a thriving accounting career.',NULL,10,1,1,12,1,'2025-07-09','2025-06-22 10:34:25','2025-06-22 10:34:25','full_time',0),(9,'ACR-Call for application for professional accounting training and internship','At ACR-Accounting Academy, we don’t just teach accounting; we empower you to excel. Backed by ACR-Online Accounting Services Ltd, a leading Rwandan accounting firm established under the Rwandan Company Act, we bring real-world expertise to your learning journey. Since 2019, we’ve supported small and medium-sized businesses with accounting, bookkeeping, tax preparation, and auditing services, giving us deep insights into the skills employers demand.','Registration: Free\r\nTraining Fee: Rwf 200,000 (a small investment for lifelong opportunities)\r\nFlexible payment plans are available—contact us to learn more!\r\n\r\nRegister Now\r\n\r\nSpaces are limited, so don’t wait! Register today to secure your spot and take the first step toward a thriving accounting career.',NULL,10,1,1,12,1,'2025-07-09','2025-06-22 10:42:24','2025-06-22 10:42:24','full_time',0),(10,'Procurement Officer','Women Opportunity Center (WOC) is recruiting for the position of Procurement Officer. This position is open to all interested candidates/all sources and is available to start immediately at its Kayonza Headquarters. The Procurement Officer is the technical financial position in the organization and is under the Supervision of the Financial and Administration Manager.\r\n\r\nThe Procurement Officer is responsible for managing the procurement process, ensuring transparency, cost-effectiveness, and compliance with internal and external policies and procedures.','Self-motivated and able to work independently\r\n­ Results-oriented and committed to meeting deadlines\r\n­ High level of integrity and confidentiality\r\n­ Effective collaboration with internal teams and external suppliers\r\n­ Good communication and negotiation skills',NULL,3,1,1,1,1,'2025-06-28','2025-06-22 10:46:49','2025-06-22 10:46:49','full_time',0),(11,'WAITER / WAITRESS','WAITER / WAITRESS','WAITER / WAITRESS',NULL,2,1,1,12,1,'2025-07-12','2025-06-22 11:06:11','2025-06-22 11:06:11','full_time',0),(12,'Temporary Driver waje','Temporary Driver','Temporary Driver',NULL,9,1,1,12,4,'2025-07-26','2025-06-22 11:12:57','2025-06-25 03:40:31','full_time',0),(13,'WER / WAITRAITESS','WER / WAITRAITESS','WER / WAITRAITESS',NULL,10,1,1,1,1,'2025-06-27','2025-06-22 11:31:46','2025-06-22 11:31:46','full_time',0),(14,'WER / WAITRAITESS','WER / WAITRAITESS','WER / WAITRAITESS',NULL,10,1,1,1,1,'2025-06-27','2025-06-22 13:16:33','2025-06-22 13:16:33','full_time',0),(15,'WER / WAITRAITESS','WER / WAITRAITESS','WER / WAITRAITESS',NULL,10,1,1,1,1,'2025-06-27','2025-06-22 13:19:09','2025-06-22 13:19:09','full_time',0),(16,'Finance and Administration Assistant','Temporary Driver','Temporary Driver',NULL,3,1,1,1,2,'2025-07-11','2025-06-24 19:21:25','2025-06-24 19:21:25','full_time',0),(17,'Procurement Officer','DataTables warning: table id=jobsTable - Requested unknown parameter \'job_id\' for row 10, column 0. For more information about this error, please see http://datatables.net/tn/4','DataTables warning: table id=jobsTable - Requested unknown parameter \'job_id\' for row 10, column 0. For more information about this error, please see http://datatables.net/tn/4',NULL,3,1,6,6,1,'2025-07-12','2025-06-24 19:23:01','2025-06-24 19:23:01','full_time',0),(18,'Temporary Driver','Temporary Driver','Temporary Driver',NULL,9,1,1,12,4,'2025-07-12','2025-06-25 03:39:38','2025-06-25 03:39:38','full_time',0);
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-07-04 13:01:34

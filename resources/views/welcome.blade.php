@@ -17,55 +17,57 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
-        .header-carousel .owl-carousel-item img { height: 600px; object-fit: cover; filter: brightness(0.6); transition: filter 0.5s ease; }
-        .header-carousel .owl-carousel-item:hover img { filter: brightness(0.8); }
-        .carousel-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); padding: 20px; }
-        .carousel-text h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(90deg, #1e3a8a, #00B074); -webkit-background-clip: text; background-clip: text; color: transparent; transition: transform 0.3s ease, opacity 0.3s ease; }
-        .carousel-text h1:hover { transform: scale(1.05); opacity: 0.9; }
-        .carousel-text p { font-size: 1.5rem; font-weight: 400; margin-bottom: 1.5rem; color: #fff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); }
-        .carousel-text .btn-primary { background-color: #00B074; border-color: #00B074; font-size: 1.1rem; padding: 0.75rem 1.5rem; border-radius: 25px; transition: background-color 0.3s ease, transform 0.3s ease; }
-        .carousel-text .btn-primary:hover { background-color: #028654; transform: translateY(-2px); }
-        .job-item { background: #ffffff; border: 1px solid #e9ecef; border-radius: 10px; padding: 15px; transition: transform 0.3s, box-shadow 0.3s; }
-        .job-item:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
-        .job-item h5 { font-size: 1.5rem; font-weight: 600; color: #1e3a8a; margin-bottom: 0.5rem; }
-        .job-item p { font-size: 0.9rem; color: #6c757d; margin: 0.25rem 0; }
-        .job-item .btn-primary { background-color: #1e3a8a; border-color: #1e3a8a; font-size: 0.875rem; padding: 0.25rem 0.75rem; }
-        .job-item .btn-primary:hover { background-color: #172554; border-color: #172554; }
-        .btn-primary { background-color: #1e3a8a; border-color: #1e3a8a; }
-        .btn-primary:hover { background-color: #172554; border-color: #172554; }
-        .search-bar { background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 20px; }
-        .footer { background: #1e3a8a; color: #ffffff; }
-        .contact-section { padding: 40px 0; background-color: #f1f3f5; }
-        .contact-form .form-control { background: #e9ecef; border: none; color: #333; margin-bottom: 10px; }
-        .contact-form .form-control:focus { background: #e9ecef; box-shadow: none; }
-        .contact-form .btn-primary { background-color: #00B074; border-color: #00B074; width: 100%; }
-        .contact-form .btn-primary:hover { background-color: #028654; }
-        .map-container { height: 400px; margin-top: 20px; }
-        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
-        .loading-spinner { display: none; width: 2rem; height: 2rem; border: 3px solid #00B074; border-top: 3px solid transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f5f7fa; color: #333; }
+        .header-carousel .owl-carousel-item img { height: 650px; object-fit: cover; filter: brightness(0.5); transition: filter 0.5s ease; }
+        .header-carousel .owl-carousel-item:hover img { filter: brightness(0.7); }
+        .carousel-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); padding: 30px; background: rgba(45, 55, 72, 0.6); border-radius: 15px; }
+        .carousel-text h1 { font-size: 3rem; font-weight: 600; margin-bottom: 1.5rem; background: linear-gradient(90deg, #2d3748, #4fd1c5); -webkit-background-clip: text; background-clip: text; color: transparent; transition: transform 0.4s ease, opacity 0.4s ease; }
+        .carousel-text h1:hover { transform: scale(1.1); opacity: 1; }
+        .carousel-text p { font-size: 1.5rem; font-weight: 400; margin-bottom: 2rem; color: #fff; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); }
+        .carousel-text .btn-primary { background: linear-gradient(90deg, #2d3748, #4fd1c5); border: none; font-size: 1.2rem; padding: 1rem 2rem; border-radius: 30px; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .carousel-text .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); }
+        .feature-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 30px; transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer; background: linear-gradient(135deg, #ffffff, #f7fafc); }
+        .feature-item:hover { transform: translateY(-15px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+        .feature-item i { font-size: 3rem; color: #4fd1c5; margin-bottom: 1.5rem; transition: color 0.4s ease; }
+        .feature-item:hover i { color: #2d3748; }
+        .feature-item h5 { font-size: 1.5rem; font-weight: 600; color: #2d3748; margin-bottom: 1rem; }
+        .feature-item p { font-size: 1.1rem; color: #4a5568; }
+        .who-we-are { background: linear-gradient(135deg, #edf2f7, #ffffff); padding: 40px 0; }
+        .who-we-are h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        .who-we-are p { color: #4a5568; font-size: 1.2rem; line-height: 2; text-align: center; max-width: 900px; margin: 0 auto 40px; }
+        .our-core-values { background: linear-gradient(135deg, #f7fafc, #ffffff); padding: 40px 0; }
+        .our-core-values h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        .our-core-values p { color: #4a5568; font-size: 1.2rem; line-height: 2; text-align: center; max-width: 900px; margin: 0 auto 40px; }
+        .our-core-values .value-item { background: #fff; border: none; border-radius: 20px; padding: 30px; text-align: center; transition: transform 0.4s ease, box-shadow 0.4s ease; margin-bottom: 20px; }
+        .our-core-values .value-item:hover { transform: translateY(-15px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+        .our-core-values .value-item i { font-size: 3rem; color: #4fd1c5; margin-bottom: 1.5rem; }
+        .our-core-values .value-item h5 { color: #2d3748; font-size: 1.5rem; font-weight: 600; }
+        .our-core-values .value-item p { color: #4a5568; font-size: 1.1rem; }
+        .what-we-do { background: linear-gradient(135deg, #ffffff, #e6f0fa); padding: 40px 0; }
+        .what-we-do h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        .what-we-do .service-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 20px; margin-bottom: 20px; transition: transform 0.4s ease, box-shadow 0.4s ease; text-align: center; }
+        .what-we-do .service-item:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+        .what-we-do .service-item h5 { color: #2d3748; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .what-we-do .service-item p { color: #4a5568; font-size: 1.1rem; }
+        .footer { background: linear-gradient(135deg, #2d3748, #1a202c); color: #ffffff; padding: 60px 0; }
+        .navbar-nav .nav-link { padding: 12px 20px; border-radius: 10px; transition: background-color 0.4s ease, color 0.4s ease; font-weight: 500; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { background: linear-gradient(90deg, #2d3748, #4fd1c5); color: #fff !important; }
+        .login-btn, .register-btn { margin-left: 15px; padding: 10px 25px; border-radius: 30px; background: linear-gradient(90deg, #2d3748, #4fd1c5); color: #fff; border: none; transition: transform 0.4s ease, box-shadow 0.4s ease; font-weight: 500; }
+        .login-btn:hover, .register-btn:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); }
+        .loading-spinner { display: none; width: 2.5rem; height: 2.5rem; border: 4px solid #4fd1c5; border-top: 4px solid transparent; border-radius: 50%; animation: spin 1.2s linear infinite; margin: 0 auto; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .modal-content { background: linear-gradient(135deg, #00B074, #1e3a8a); color: #fff; border: none; border-radius: 15px; }
-        .modal-header, .modal-footer { border: none; }
-        .modal-body { text-align: left; padding: 2rem; }
-        .navbar-nav .nav-link { padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s, color 0.3s; }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { background-color: #00B074; color: #fff !important; }
-        .login-btn, .register-btn { margin-left: 10px; padding: 8px 20px; border-radius: 25px; background-color: #1e3a8a; color: #fff; border: none; transition: background-color 0.3s, transform 0.3s; }
-        .login-btn:hover, .register-btn:hover { background-color: #172554; transform: translateY(-2px); }
-        .apply-modal-details { margin-top: 15px; display: none; }
-        .apply-modal-details input, .apply-modal-details select, .registration-modal-details input, .registration-modal-details select { background-color: #e9ecef; border: none; color: #333; margin-bottom: 10px; }
-        .modal.fade .modal-dialog { transition: transform 0.3s ease-out, opacity 0.2s; }
-        .modal.show .modal-dialog { transform: translate(0, -50px); }
-        #successModal { display: none; }
-        #successModal .modal-content { background: linear-gradient(135deg, #00B074, #1e3a8a); color: #fff; border-radius: 15px; }
-        #successModal .modal-body { text-align: center; padding: 2rem; }
-        .job-title-highlight { font-size: 1.5rem; font-weight: 700; color: #fff; background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 8px; margin-bottom: 1.5rem; text-align: center; border: 2px solid #00B074; }
+        #spinner { display: none; }
+        .contact-section { background: #f7fafc; padding: 80px 0; }
+        .contact-form .form-control { border-radius: 15px; border-color: #e2e8f0; transition: border-color 0.4s ease; }
+        .contact-form .form-control:focus { border-color: #4fd1c5; box-shadow: 0 0 10px rgba(79, 209, 197, 0.3); }
+        .back-to-top { background: linear-gradient(90deg, #2d3748, #4fd1c5); border-radius: 50%; transition: transform 0.4s ease, opacity 0.4s ease; }
+        .back-to-top:hover { transform: rotate(360deg); opacity: 0.9; }
     </style>
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <div class="spinner-border text-primary" style="width: 3.5rem; height: 3.5rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
@@ -97,13 +99,13 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid p-0 mb-5">
+        <div class="container-fluid p-0 mb-0">
             <div class="owl-carousel header-carousel position-relative">
                 <div class="owl-carousel-item position-relative">
                     <img class="img-fluid" src="{{ asset('img/carousel-1.jpg') }}" alt="Job seekers at work">
                     <div class="carousel-text">
                         <h1>Find Your Dream Job</h1>
-                        <p>Unlock career opportunities with ease.</p>
+                        <p>Unlock career opportunities with elegance and ease.</p>
                         <a href="{{ route('jobs.index') }}" class="btn btn-primary py-3 px-5 mt-3">Explore Jobs</a>
                     </div>
                 </div>
@@ -111,605 +113,85 @@
                     <img class="img-fluid" src="{{ asset('img/carousel-2.jpg') }}" alt="Startup job environment">
                     <div class="carousel-text">
                         <h1>Grow Your Career</h1>
-                        <p>Connect with top employers today.</p>
+                        <p>Connect with top employers in style.</p>
                         <a href="{{ route('jobs.index') }}" class="btn btn-primary py-3 px-5 mt-3">Explore Jobs</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container my-5">
-            <div class="search-bar wow fadeInUp" data-wow-delay="0.1s">
-                <form action="{{ route('jobs.index') }}" method="get">
-                    <div class="row g-3 align-items-end">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" name="keyword" placeholder="Job Title or Keyword" value="{{ request('keyword') }}">
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-select" name="category">
-                                <option value="">Select Category</option>
-                                <option value="1" @if(request('category') == '1') selected @endif>Category 1</option>
-                                <option value="2" @if(request('category') == '2') selected @endif>Category 2</option>
-                                <option value="3" @if(request('category') == '3') selected @endif>Category 3</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <select class="form-select" name="location">
-                                <option value="">Select Location</option>
-                                <option value="1" @if(request('location') == '1') selected @endif>Location 1</option>
-                                <option value="2" @if(request('location') == '2') selected @endif>Location 2</option>
-                                <option value="3" @if(request('location') == '3') selected @endif>Location 3</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100">Search Jobs</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="container-xxl py-5 who-we-are" id="about">
+            <div class="container">
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">About Us</h1>
+                <p class="wow fadeInUp" data-wow-delay="0.2s">JobSmart is a premier career solutions platform dedicated to connecting talented professionals with leading organizations. Our mission is to deliver exceptional job opportunities and innovative services, fostering a dynamic ecosystem where talent and ambition thrive.</p>
             </div>
         </div>
-        @php
-            $departments = App\Models\Department::all();
-            $provinces = App\Models\Province::all();
-        @endphp
-        <div class="container-xxl py-5" id="jobs">
+        <div class="container-xxl py-5 our-core-values">
             <div class="container">
-                <h1 class="text-center mb-5 text-dark wow fadeInUp" data-wow-delay="0.1s">Job Opportunities</h1>
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-full-time">
-                                <h6 class="mt-n1 mb-0">Full Time <span class="badge bg-primary ms-2">{{ $jobs->where('job_type', 'full_time')->count() }}</span></h6>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-part-time">
-                                <h6 class="mt-n1 mb-0">Part Time <span class="badge bg-primary ms-2">{{ $jobs->where('job_type', 'part_time')->count() }}</span></h6>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-freelance">
-                                <h6 class="mt-n1 mb-0">Freelance <span class="badge bg-primary ms-2">{{ $jobs->where('job_type', 'freelance')->count() }}</span></h6>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-internship">
-                                <h6 class="mt-n1 mb-0">Internship <span class="badge bg-primary ms-2">{{ $jobs->where('job_type', 'internship')->count() }}</span></h6>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab-full-time" class="tab-pane fade show p-0 active">
-                            <div class="job-grid">
-                                @foreach ($jobs->where('job_type', 'full_time') as $job)
-                                    <div class="job-item p-4 mb-4">
-                                        <div class="row g-4">
-                                            <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                                <img class="flex-shrink-0 img-fluid border rounded" src="{{ $job->company->logo ? asset('storage/' . $job->company->logo) : asset('img/default-logo.png') }}" alt="{{ $job->company->name }}" style="width: 80px; height: 80px;">
-                                                <div class="text-start ps-4">
-                                                    <h5 class="mb-3">{{ $job->title }}</h5>
-                                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->location }}</p>
-                                                    <p><i class="fa fa-building text-primary me-2"></i>{{ $job->company->name }}</p>
-                                                    <p><i class="fa fa-clock text-primary me-2"></i>{{ $job->created_at->diffForHumans() }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                                <div class="d-flex mb-3">
-                                                    <a class="btn btn-light btn-square me-3" href="{{ route('jobs.show', $job->job_id) }}"><i class="far fa-heart text-primary"></i></a>
-                                                    <button class="btn btn-primary" id="apply-btn-{{ $job->job_id }}" data-bs-toggle="modal" data-bs-target="#registerModal-{{ $job->job_id }}" data-job-title="{{ $job->title }}">Apply Now</button>
-                                                </div>
-                                                <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ $job->deadline }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="registerModal-{{ $job->job_id }}" tabindex="-1" aria-labelledby="registerModalLabel-{{ $job->job_id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="registerModalLabel-{{ $job->job_id }}">Apply for {{ $job->title }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h3 class="job-title-highlight">{{ $job->title }} at {{ $job->company->name }}</h3>
-                                                    <div id="register-success-message-{{ $job->job_id }}" class="alert alert-success d-none" role="alert"></div>
-                                                    <div id="register-error-message-{{ $job->job_id }}" class="alert alert-danger d-none" role="alert"></div>
-                                                    <form id="apply-form-{{ $job->job_id }}" action="{{ route('applicables.store') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="job_id" value="{{ $job->job_id }}">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="names-{{ $job->job_id }}">Full Name</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="names-{{ $job->job_id }}" name="names" required>
-                                                                    <span class="text-danger error-names"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="phone-{{ $job->job_id }}">Phone Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="phone-{{ $job->job_id }}" name="phone" required pattern="^(?:\+250|07)\d{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
-                                                                    <span class="text-danger error-phone"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="email-{{ $job->job_id }}">Email</label>
-                                                                    <input type="email" class="form-control registration-modal-details" id="email-{{ $job->job_id }}" name="email" required>
-                                                                    <span class="text-danger error-email" id="emailFeedback-{{ $job->job_id }}"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_number-{{ $job->job_id }}">ID Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="id_number-{{ $job->job_id }}" name="id_number" required pattern="\d{16}" title="Must be 16 digits">
-                                                                    <span class="text-danger error-id_number"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="department_id-{{ $job->job_id }}">Department</label>
-                                                                    <select class="form-control registration-modal-details" id="department_id-{{ $job->job_id }}" name="department_id" required>
-                                                                        <option value="">Select Department</option>
-                                                                        @foreach ($departments as $department)
-                                                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-department_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="province_id-{{ $job->job_id }}">Province</label>
-                                                                    <select class="form-control registration-modal-details" id="province_id-{{ $job->job_id }}" name="province_id" required>
-                                                                        <option value="">Select Province</option>
-                                                                        @foreach ($provinces as $province)
-                                                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-province_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="district_id-{{ $job->job_id }}">District</label>
-                                                                    <select class="form-control registration-modal-details" id="district_id-{{ $job->job_id }}" name="district_id" required>
-                                                                        <option value="">Select District</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-district_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="sector_id-{{ $job->job_id }}">Sector</label>
-                                                                    <select class="form-control registration-modal-details" id="sector_id-{{ $job->job_id }}" name="sector_id" required>
-                                                                        <option value="">Select Sector</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-sector_id"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="cv-{{ $job->job_id }}">Upload CV</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="cv-{{ $job->job_id }}" name="cv" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-cv"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="degree-{{ $job->job_id }}">Upload Degree</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="degree-{{ $job->job_id }}" name="degree" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-degree"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_doc-{{ $job->job_id }}">Upload ID Document</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="id_doc-{{ $job->job_id }}" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
-                                                                    <span class="text-danger error-id_doc"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary mt-3">Submit Application</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Values</h1>
+                <p class="wow fadeInUp" data-wow-delay="0.2s">At JobSmart, we uphold the highest standards of excellence, integrity, and innovation. Our commitment to delivering exceptional career solutions drives us to build lasting partnerships and empower professionals with the resources they need to thrive in a competitive world.</p>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="value-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <h5>Integrity</h5>
+                            <p>We operate with transparency and ethical principles in all our endeavors.</p>
                         </div>
-                        <div id="tab-part-time" class="tab-pane fade p-0">
-                            <div class="job-grid">
-                                @foreach ($jobs->where('job_type', 'part_time') as $job)
-                                    <div class="job-item p-4 mb-4">
-                                        <div class="row g-4">
-                                            <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                                <img class="flex-shrink-0 img-fluid border rounded" src="{{ $job->company->logo ? asset('storage/' . $job->company->logo) : asset('img/default-logo.png') }}" alt="{{ $job->company->name }}" style="width: 80px; height: 80px;">
-                                                <div class="text-start ps-4">
-                                                    <h5 class="mb-3">{{ $job->title }}</h5>
-                                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->location }}</p>
-                                                    <p><i class="fa fa-building text-primary me-2"></i>{{ $job->company->name }}</p>
-                                                    <p><i class="fa fa-clock text-primary me-2"></i>{{ $job->created_at->diffForHumans() }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                                <div class="d-flex mb-3">
-                                                    <a class="btn btn-light btn-square me-3" href="{{ route('jobs.show', $job->job_id) }}"><i class="far fa-heart text-primary"></i></a>
-                                                    <button class="btn btn-primary" id="apply-btn-{{ $job->job_id }}" data-bs-toggle="modal" data-bs-target="#registerModal-{{ $job->job_id }}" data-job-title="{{ $job->title }}">Apply Now</button>
-                                                </div>
-                                                <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ $job->deadline }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="registerModal-{{ $job->job_id }}" tabindex="-1" aria-labelledby="registerModalLabel-{{ $job->job_id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="registerModalLabel-{{ $job->job_id }}">Apply for {{ $job->title }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h3 class="job-title-highlight">{{ $job->title }} at {{ $job->company->name }}</h3>
-                                                    <div id="register-success-message-{{ $job->job_id }}" class="alert alert-success d-none" role="alert"></div>
-                                                    <div id="register-error-message-{{ $job->job_id }}" class="alert alert-danger d-none" role="alert"></div>
-                                                    <form id="apply-form-{{ $job->job_id }}" action="{{ route('applicables.store') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="job_id" value="{{ $job->job_id }}">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="names-{{ $job->job_id }}">Full Name</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="names-{{ $job->job_id }}" name="names" required>
-                                                                    <span class="text-danger error-names"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="phone-{{ $job->job_id }}">Phone Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="phone-{{ $job->job_id }}" name="phone" required pattern="^(?:\+250|07)\d{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
-                                                                    <span class="text-danger error-phone"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="email-{{ $job->job_id }}">Email</label>
-                                                                    <input type="email" class="form-control registration-modal-details" id="email-{{ $job->job_id }}" name="email" required>
-                                                                    <span class="text-danger error-email" id="emailFeedback-{{ $job->job_id }}"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_number-{{ $job->job_id }}">ID Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="id_number-{{ $job->job_id }}" name="id_number" required pattern="\d{16}" title="Must be 16 digits">
-                                                                    <span class="text-danger error-id_number"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="department_id-{{ $job->job_id }}">Department</label>
-                                                                    <select class="form-control registration-modal-details" id="department_id-{{ $job->job_id }}" name="department_id" required>
-                                                                        <option value="">Select Department</option>
-                                                                        @foreach ($departments as $department)
-                                                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-department_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="province_id-{{ $job->job_id }}">Province</label>
-                                                                    <select class="form-control registration-modal-details" id="province_id-{{ $job->job_id }}" name="province_id" required>
-                                                                        <option value="">Select Province</option>
-                                                                        @foreach ($provinces as $province)
-                                                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-province_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="district_id-{{ $job->job_id }}">District</label>
-                                                                    <select class="form-control registration-modal-details" id="district_id-{{ $job->job_id }}" name="district_id" required>
-                                                                        <option value="">Select District</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-district_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="sector_id-{{ $job->job_id }}">Sector</label>
-                                                                    <select class="form-control registration-modal-details" id="sector_id-{{ $job->job_id }}" name="sector_id" required>
-                                                                        <option value="">Select Sector</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-sector_id"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="cv-{{ $job->job_id }}">Upload CV</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="cv-{{ $job->job_id }}" name="cv" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-cv"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="degree-{{ $job->job_id }}">Upload Degree</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="degree-{{ $job->job_id }}" name="degree" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-degree"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_doc-{{ $job->job_id }}">Upload ID Document</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="id_doc-{{ $job->job_id }}" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
-                                                                    <span class="text-danger error-id_doc"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary mt-3">Submit Application</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="value-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h5>Innovation</h5>
+                            <p>We embrace cutting-edge solutions to redefine career opportunities.</p>
                         </div>
-                        <div id="tab-freelance" class="tab-pane fade p-0">
-                            <div class="job-grid">
-                                @foreach ($jobs->where('job_type', 'freelance') as $job)
-                                    <div class="job-item p-4 mb-4">
-                                        <div class="row g-4">
-                                            <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                                <img class="flex-shrink-0 img-fluid border rounded" src="{{ $job->company->logo ? asset('storage/' . $job->company->logo) : asset('img/default-logo.png') }}" alt="{{ $job->company->name }}" style="width: 80px; height: 80px;">
-                                                <div class="text-start ps-4">
-                                                    <h5 class="mb-3">{{ $job->title }}</h5>
-                                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->location }}</p>
-                                                    <p><i class="fa fa-building text-primary me-2"></i>{{ $job->company->name }}</p>
-                                                    <p><i class="fa fa-clock text-primary me-2"></i>{{ $job->created_at->diffForHumans() }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-4 d-flex flex-column alignið
-items-start align-items-md-end justify-content-center">
-                                                <div class="d-flex mb-3">
-                                                    <a class="btn btn-light btn-square me-3" href="{{ route('jobs.show', $job->job_id) }}"><i class="far fa-heart text-primary"></i></a>
-                                                    <button class="btn btn-primary" id="apply-btn-{{ $job->job_id }}" data-bs-toggle="modal" data-bs-target="#registerModal-{{ $job->job_id }}" data-job-title="{{ $job->title }}">Apply Now</button>
-                                                </div>
-                                                <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ $job->deadline }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="registerModal-{{ $job->job_id }}" tabindex="-1" aria-labelledby="registerModalLabel-{{ $job->job_id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="registerModalLabel-{{ $job->job_id }}">Apply for {{ $job->title }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h3 class="job-title-highlight">{{ $job->title }} at {{ $job->company->name }}</h3>
-                                                    <div id="register-success-message-{{ $job->job_id }}" class="alert alert-success d-none" role="alert"></div>
-                                                    <div id="register-error-message-{{ $job->job_id }}" class="alert alert-danger d-none" role="alert"></div>
-                                                    <form id="apply-form-{{ $job->job_id }}" action="{{ route('applicables.store') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="job_id" value="{{ $job->job_id }}">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="names-{{ $job->job_id }}">Full Name</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="names-{{ $job->job_id }}" name="names" required>
-                                                                    <span class="text-danger error-names"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="phone-{{ $job->job_id }}">Phone Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="phone-{{ $job->job_id }}" name="phone" required pattern="^(?:\+250|07)\d{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
-                                                                    <span class="text-danger error-phone"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="email-{{ $job->job_id }}">Email</label>
-                                                                    <input type="email" class="form-control registration-modal-details" id="email-{{ $job->job_id }}" name="email" required>
-                                                                    <span class="text-danger error-email" id="emailFeedback-{{ $job->job_id }}"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_number-{{ $job->job_id }}">ID Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="id_number-{{ $job->job_id }}" name="id_number" required pattern="\d{16}" title="Must be 16 digits">
-                                                                    <span class="text-danger error-id_number"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="department_id-{{ $job->job_id }}">Department</label>
-                                                                    <select class="form-control registration-modal-details" id="department_id-{{ $job->job_id }}" name="department_id" required>
-                                                                        <option value="">Select Department</option>
-                                                                        @foreach ($departments as $department)
-                                                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-department_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="province_id-{{ $job->job_id }}">Province</label>
-                                                                    <select class="form-control registration-modal-details" id="province_id-{{ $job->job_id }}" name="province_id" required>
-                                                                        <option value="">Select Province</option>
-                                                                        @foreach ($provinces as $province)
-                                                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-province_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="district_id-{{ $job->job_id }}">District</label>
-                                                                    <select class="form-control registration-modal-details" id="district_id-{{ $job->job_id }}" name="district_id" required>
-                                                                        <option value="">Select District</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-district_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="sector_id-{{ $job->job_id }}">Sector</label>
-                                                                    <select class="form-control registration-modal-details" id="sector_id-{{ $job->job_id }}" name="sector_id" required>
-                                                                        <option value="">Select Sector</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-sector_id"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="cv-{{ $job->job_id }}">Upload CV</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="cv-{{ $job->job_id }}" name="cv" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-cv"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="degree-{{ $job->job_id }}">Upload Degree</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="degree-{{ $job->job_id }}" name="degree" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-degree"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_doc-{{ $job->job_id }}">Upload ID Document</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="id_doc-{{ $job->job_id }}" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
-                                                                    <span class="text-danger error-id_doc"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary mt-3">Submit Application</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div id="tab-internship" class="tab-pane fade p-0">
-                            <div class="job-grid">
-                                @foreach ($jobs->where('job_type', 'internship') as $job)
-                                    <div class="job-item p-4 mb-4">
-                                        <div class="row g-4">
-                                            <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                                <img class="flex-shrink-0 img-fluid border rounded" src="{{ $job->company->logo ? asset('storage/' . $job->company->logo) : asset('img/default-logo.png') }}" alt="{{ $job->company->name }}" style="width: 80px; height: 80px;">
-                                                <div class="text-start ps-4">
-                                                    <h5 class="mb-3">{{ $job->title }}</h5>
-                                                    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $job->location }}</p>
-                                                    <p><i class="fa fa-building text-primary me-2"></i>{{ $job->company->name }}</p>
-                                                    <p><i class="fa fa-clock text-primary me-2"></i>{{ $job->created_at->diffForHumans() }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                                <div class="d-flex mb-3">
-                                                    <a class="btn btn-light btn-square me-3" href="{{ route('jobs.show', $job->job_id) }}"><i class="far fa-heart text-primary"></i></a>
-                                                    <button class="btn btn-primary" id="apply-btn-{{ $job->job_id }}" data-bs-toggle="modal" data-bs-target="#registerModal-{{ $job->job_id }}" data-job-title="{{ $job->title }}">Apply Now</button>
-                                                </div>
-                                                <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Deadline: {{ $job->deadline }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="registerModal-{{ $job->job_id }}" tabindex="-1" aria-labelledby="registerModalLabel-{{ $job->job_id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="registerModalLabel-{{ $job->job_id }}">Apply for {{ $job->title }}</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h3 class="job-title-highlight">{{ $job->title }} at {{ $job->company->name }}</h3>
-                                                    <div id="register-success-message-{{ $job->job_id }}" class="alert alert-success d-none" role="alert"></div>
-                                                    <div id="register-error-message-{{ $job->job_id }}" class="alert alert-danger d-none" role="alert"></div>
-                                                    <form id="apply-form-{{ $job->job_id }}" action="{{ route('applicables.store') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" name="job_id" value="{{ $job->job_id }}">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="names-{{ $job->job_id }}">Full Name</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="names-{{ $job->job_id }}" name="names" required>
-                                                                    <span class="text-danger error-names"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="phone-{{ $job->job_id }}">Phone Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="phone-{{ $job->job_id }}" name="phone" required pattern="^(?:\+250|07)\d{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
-                                                                    <span class="text-danger error-phone"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="email-{{ $job->job_id }}">Email</label>
-                                                                    <input type="email" class="form-control registration-modal-details" id="email-{{ $job->job_id }}" name="email" required>
-                                                                    <span class="text-danger error-email" id="emailFeedback-{{ $job->job_id }}"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_number-{{ $job->job_id }}">ID Number</label>
-                                                                    <input type="text" class="form-control registration-modal-details" id="id_number-{{ $job->job_id }}" name="id_number" required pattern="\d{16}" title="Must be 16 digits">
-                                                                    <span class="text-danger error-id_number"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="department_id-{{ $job->job_id }}">Department</label>
-                                                                    <select class="form-control registration-modal-details" id="department_id-{{ $job->job_id }}" name="department_id" required>
-                                                                        <option value="">Select Department</option>
-                                                                        @foreach ($departments as $department)
-                                                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-department_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="province_id-{{ $job->job_id }}">Province</label>
-                                                                    <select class="form-control registration-modal-details" id="province_id-{{ $job->job_id }}" name="province_id" required>
-                                                                        <option value="">Select Province</option>
-                                                                        @foreach ($provinces as $province)
-                                                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="text-danger error-province_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="district_id-{{ $job->job_id }}">District</label>
-                                                                    <select class="form-control registration-modal-details" id="district_id-{{ $job->job_id }}" name="district_id" required>
-                                                                        <option value="">Select District</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-district_id"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="sector_id-{{ $job->job_id }}">Sector</label>
-                                                                    <select class="form-control registration-modal-details" id="sector_id-{{ $job->job_id }}" name="sector_id" required>
-                                                                        <option value="">Select Sector</option>
-                                                                    </select>
-                                                                    <span class="text-danger error-sector_id"></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label for="cv-{{ $job->job_id }}">Upload CV</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="cv-{{ $job->job_id }}" name="cv" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-cv"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="degree-{{ $job->job_id }}">Upload Degree</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="degree-{{ $job->job_id }}" name="degree" accept=".pdf,.doc,.docx">
-                                                                    <span class="text-danger error-degree"></span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="id_doc-{{ $job->job_id }}">Upload ID Document</label>
-                                                                    <input type="file" class="form-control registration-modal-details" id="id_doc-{{ $job->job_id }}" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
-                                                                    <span class="text-danger error-id_doc"></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary mt-3">Submit Application</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="value-item">
+                            <i class="fas fa-handshake"></i>
+                            <h5>Partnership</h5>
+                            <p>We foster strong, collaborative relationships with our clients and partners.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5 what-we-do" id="jobs">
             <div class="container">
-                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Why Choose Us</h1>
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">What We Do</h1>
                 <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="feature-item text-center border rounded p-4">
-                            <i class="fa fa-briefcase fa-3x text-primary mb-4"></i>
-                            <h5 class="mb-3">Wide Range of Jobs</h5>
-                            <p>Explore diverse job opportunities across industries.</p>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-item">
+                            <h5>Job Matching</h5>
+                            <p>Connect talents with ideal career opportunities seamlessly.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="feature-item text-center border rounded p-4">
-                            <i class="fa fa-users fa-3x text-primary mb-4"></i>
-                            <h5 class="mb-3">Trusted Employers</h5>
-                            <p>Connect with verified and reputable companies.</p>
+                        <div class="service-item">
+                            <h5>Career Guidance</h5>
+                            <p>Provide expert advice to navigate your professional journey.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="service-item">
+                            <h5>Employer Solutions</h5>
+                            <p>Help businesses find top-tier candidates efficiently.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="feature-item text-center border rounded p-4">
-                            <i class="fa fa-rocket fa-3x text-primary mb-4"></i>
-                            <h5 class="mb-3">Fast Application</h5>
-                            <p>Apply to jobs quickly with our streamlined process.</p>
+                        <div class="service-item">
+                            <h5>Skill Development</h5>
+                            <p>Offer training to enhance employability and career growth.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="service-item">
+                            <h5>Resume Building</h5>
+                            <p>Assist in creating standout resumes for job applications.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="service-item">
+                            <h5>Interview Prep</h5>
+                            <p>Prepare candidates with mock interviews and strategies.</p>
                         </div>
                     </div>
                 </div>
@@ -717,7 +199,7 @@ items-start align-items-md-end justify-content-center">
         </div>
         <div class="container-fluid contact-section bg-light" id="contact">
             <div class="container py-5">
-                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Contact Us</h1>
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Get in Touch</h1>
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="contact-form">
@@ -737,7 +219,7 @@ items-start align-items-md-end justify-content-center">
                                         <textarea class="form-control" name="message" placeholder="Message" rows="5" required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                        <button type="submit" class="btn btn-primary py-2 px-4">Send Message</button>
                                     </div>
                                 </div>
                             </form>
@@ -745,7 +227,7 @@ items-start align-items-md-end justify-content-center">
                     </div>
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019788424739!2d-122.41941568468134!3d37.77492977975947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f3c7b3d2d%3A0x4b1c7b7b7b7b7b7b!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1631234567890!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019788424739!2d-122.41941568468134!3d37.77492977975947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f3c7b3d2d%3A0x4b1c7b7b7b7b7b7b!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1631234567890!5m2!1sen!2sus" width="100%" height="100%" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
@@ -756,37 +238,34 @@ items-start align-items-md-end justify-content-center">
                 <div class="row g-5">
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">JobSmart</h5>
-                        <p class="mb-4">Your trusted platform for finding the best job opportunities and connecting with top employers.</p>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, Kigali, Rwanda</p>
+                        <p class="mb-4">Your premier destination for elite job opportunities and connections with top-tier employers.</p>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Elegance St, Kigali, Rwanda</p>
                         <p><i class="fa fa-phone-alt me-3"></i>+250 788 123 456</p>
                         <p><i class="fa fa-envelope me-3"></i>info@jobsmart.com</p>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link" href="{{ route('welcome') }}">Home</a>
-                        <a class="btn btn-link" href="#about">About</a>
-                        <a class="btn btn-link" href="{{ route('jobs.index') }}">Jobs</a>
-                        <a class="btn btn-link" href="#contact">Contact</a>
+                        <a class="btn btn-link text-white" href="{{ route('welcome') }}">Home</a>
+                        <a class="btn btn-link text-white" href="#about">About</a>
+                        <a class="btn btn-link text-white" href="{{ route('jobs.index') }}">Jobs</a>
+                        <a class="btn btn-link text-white" href="#contact">Contact</a>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Follow Us</h5>
                         <div class="d-flex">
-                            <a class="btn btn-square btn-primary me-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-primary me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-primary me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-square btn-primary" href="#"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-light" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container">
-                <div class="copyright">
+                <div class="copyright text-center">
                     <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            © <a class="border-bottom" href="#">JobSmart</a>, All Rights Reserved.
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            Designed By <a class="border-bottom" href="#">SmartDev</a>
+                        <div class="col-12 text-white">
+                            © <a class="text-white border-bottom" href="#">JobSmart</a>, All Rights Reserved. | Designed with Excellence by <a class="text-white border-bottom" href="#">SmartDev</a>
                         </div>
                     </div>
                 </div>
@@ -795,38 +274,25 @@ items-start align-items-md-end justify-content-center">
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header bg-primary text-white" style="border-radius: 20px 20px 0 0;">
                     <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
+                        <div class="mb-4">
+                            <label for="email" class="form-label text-dark">Email address</label>
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-dark">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h5 class="modal-title" id="successModalLabel">Application Success</h5>
-                    <p id="successMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -846,7 +312,7 @@ items-start align-items-md-end justify-content-center">
                 nav: true,
                 dots: true,
                 autoplay: true,
-                autoplayTimeout: 5000,
+                autoplayTimeout: 6000,
                 responsive: {
                     0: { items: 1 },
                     600: { items: 1 },
@@ -856,100 +322,8 @@ items-start align-items-md-end justify-content-center">
 
             $("#spinner").removeClass("show");
 
-            @foreach ($jobs as $job)
-                $('#apply-btn-{{ $job->job_id }}').on('click', function() {
-                    var jobTitle = $(this).data('job-title') || "{{ $job->title }}";
-                    $('#registerModal-{{ $job->job_id }}').modal({
-                        backdrop: 'static',
-                        keyboard: false
-                    }).on('show.bs.modal', function() {
-                        $(this).find('.modal-dialog').css('opacity', '0').animate({ opacity: 1 }, 300);
-                        $(this).find('.job-title-highlight').text(jobTitle + ' at {{ $job->company->name }}');
-                    });
-                });
-
-                $('#province_id-{{ $job->job_id }}').change(function() {
-                    var provinceId = $(this).val();
-                    var districtSelect = $('#district_id-{{ $job->job_id }}');
-                    var sectorSelect = $('#sector_id-{{ $job->job_id }}');
-                    districtSelect.empty().append('<option value="">Select District</option>');
-                    sectorSelect.empty().append('<option value="">Select Sector</option>');
-                    if (provinceId) {
-                        $.get('/api/districts/' + provinceId, function(data) {
-                            $.each(data, function(index, district) {
-                                districtSelect.append($('<option>', {
-                                    value: district.id,
-                                    text: district.name
-                                }));
-                            });
-                        });
-                    }
-                });
-
-                $('#district_id-{{ $job->job_id }}').change(function() {
-                    var districtId = $(this).val();
-                    var sectorSelect = $('#sector_id-{{ $job->job_id }}');
-                    sectorSelect.empty().append('<option value="">Select Sector</option>');
-                    if (districtId) {
-                        $.get('/api/sectors/' + districtId, function(data) {
-                            $.each(data, function(index, sector) {
-                                sectorSelect.append($('<option>', {
-                                    value: sector.id,
-                                    text: sector.name
-                                }));
-                            });
-                        });
-                    }
-                });
-
-                $('#apply-form-{{ $job->job_id }}').on('submit', function(e) {
-                    e.preventDefault();
-                    $('.error').text('');
-                    $('#register-success-message-{{ $job->job_id }}, #register-error-message-{{ $job->job_id }}').addClass('d-none');
-
-                    var formData = new FormData(this);
-                    var jobTitle = $('#apply-btn-{{ $job->job_id }}').data('job-title') || "{{ $job->title }}";
-
-                    $.ajax({
-                        url: $(this).attr('action'),
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        beforeSend: function() {
-                            $(this).find('button[type="submit"]').prop('disabled', true).text('Submitting...');
-                        },
-                        complete: function() {
-                            $(this).find('button[type="submit"]').prop('disabled', false).text('Submit Application');
-                        },
-                        success: function(response) {
-                            $('#registerModal-{{ $job->job_id }}').modal('hide');
-                            $('#successMessage').text(`Thank you for applying to ${jobTitle}! We will contact you soon as possible.`);
-                            $('#successModal').modal('show');
-                            setTimeout(function() {
-                                $('#successModal').modal('hide');
-                            }, 5000);
-                        },
-                        error: function(xhr) {
-                            if (xhr.status === 422) {
-                                var errors = xhr.responseJSON.errors;
-                                if (errors && errors['job_id'] && errors['job_id'].includes('already applied')) {
-                                    $('#register-error-message-{{ $job->job_id }}').removeClass('d-none').text('You have already applied for this job.');
-                                } else {
-                                    $.each(errors, function(key, value) {
-                                        $('.error-' + key).text(value[0]);
-                                    });
-                                }
-                            } else {
-                                $('#register-error-message-{{ $job->job_id }}').removeClass('d-none').text('An error occurred: ' + xhr.responseText);
-                            }
-                        }
-                    });
-                });
-            @endforeach
-
             new WOW().init();
         });
     </script>
-</body>
+    </body>
 </html>
