@@ -49,6 +49,10 @@
         .what-we-do .service-item:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
         .what-we-do .service-item h5 { color: #2d3748; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
         .what-we-do .service-item p { color: #4a5568; font-size: 1.1rem; }
+        .contact-section { background: #f7fafc; padding: 80px 0; }
+        .contact-section h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        .contact-form .form-control { border-radius: 15px; border-color: #e2e8f0; transition: border-color 0.4s ease; }
+        .contact-form .form-control:focus { border-color: #4fd1c5; box-shadow: 0 0 10px rgba(79, 209, 197, 0.3); }
         .footer { background: linear-gradient(135deg, #2d3748, #1a202c); color: #ffffff; padding: 60px 0; }
         .navbar-nav .nav-link { padding: 12px 20px; border-radius: 10px; transition: background-color 0.4s ease, color 0.4s ease; font-weight: 500; }
         .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { background: linear-gradient(90deg, #2d3748, #4fd1c5); color: #fff !important; }
@@ -57,9 +61,6 @@
         .loading-spinner { display: none; width: 2.5rem; height: 2.5rem; border: 4px solid #4fd1c5; border-top: 4px solid transparent; border-radius: 50%; animation: spin 1.2s linear infinite; margin: 0 auto; }
         @keyframes spin { to { transform: rotate(360deg); } }
         #spinner { display: none; }
-        .contact-section { background: #f7fafc; padding: 80px 0; }
-        .contact-form .form-control { border-radius: 15px; border-color: #e2e8f0; transition: border-color 0.4s ease; }
-        .contact-form .form-control:focus { border-color: #4fd1c5; box-shadow: 0 0 10px rgba(79, 209, 197, 0.3); }
         .back-to-top { background: linear-gradient(90deg, #2d3748, #4fd1c5); border-radius: 50%; transition: transform 0.4s ease, opacity 0.4s ease; }
         .back-to-top:hover { transform: rotate(360deg); opacity: 0.9; }
     </style>
@@ -121,42 +122,13 @@
         </div>
         <div class="container-xxl py-5 who-we-are" id="about">
             <div class="container">
-                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">About Us</h1>
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s"> About Us</h1>
                 <p class="wow fadeInUp" data-wow-delay="0.2s">JobSmart is a premier career solutions platform dedicated to connecting talented professionals with leading organizations. Our mission is to deliver exceptional job opportunities and innovative services, fostering a dynamic ecosystem where talent and ambition thrive.</p>
-            </div>
-        </div>
-        <div class="container-xxl py-5 our-core-values">
-            <div class="container">
-                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Values</h1>
-                <p class="wow fadeInUp" data-wow-delay="0.2s">At JobSmart, we uphold the highest standards of excellence, integrity, and innovation. Our commitment to delivering exceptional career solutions drives us to build lasting partnerships and empower professionals with the resources they need to thrive in a competitive world.</p>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="value-item">
-                            <i class="fas fa-balance-scale"></i>
-                            <h5>Integrity</h5>
-                            <p>We operate with transparency and ethical principles in all our endeavors.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="value-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <h5>Innovation</h5>
-                            <p>We embrace cutting-edge solutions to redefine career opportunities.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="value-item">
-                            <i class="fas fa-handshake"></i>
-                            <h5>Partnership</h5>
-                            <p>We foster strong, collaborative relationships with our clients and partners.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container-xxl py-5 what-we-do" id="jobs">
             <div class="container">
-                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">What We Do</h1>
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s"> What We Do</h1>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="service-item">
@@ -197,9 +169,38 @@
                 </div>
             </div>
         </div>
+        <div class="container-xxl py-5 our-core-values">
+            <div class="container">
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s"> Our Values</h1>
+                <p class="wow fadeInUp" data-wow-delay="0.2s">At JobSmart, we uphold the highest standards of excellence, integrity, and innovation. Our commitment to delivering exceptional career solutions drives us to build lasting partnerships and empower professionals with the resources they need to thrive in a competitive world.</p>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="value-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <h5>Integrity</h5>
+                            <p>We operate with transparency and ethical principles in all our endeavors.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="value-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h5>Innovation</h5>
+                            <p>We embrace cutting-edge solutions to redefine career opportunities.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="value-item">
+                            <i class="fas fa-handshake"></i>
+                            <h5>Partnership</h5>
+                            <p>We foster strong, collaborative relationships with our clients and partners.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid contact-section bg-light" id="contact">
             <div class="container py-5">
-                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Get in Touch</h1>
+                <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s"> Get in Touch</h1>
                 <div class="row g-5">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="contact-form">
