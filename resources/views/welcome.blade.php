@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Job Portal - Smart Career Solutions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Smart job portal for career opportunities" name="keywords">
@@ -72,6 +73,7 @@
         .modal-content { border-radius: 10px; }
         .modal-header { background: #38b2ac; color: #fff; }
         .modal-header .btn-close { color: #fff; }
+        .custom-error { color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem; display: block; }
     </style>
 </head>
 <body>
@@ -93,7 +95,7 @@
                     <a href="#about" class="nav-item nav-link {{ request()->routeIs('welcome') ? 'active' : '' }}">About Us</a>
                     <a href="#jobs" class="nav-item nav-link {{ request()->routeIs('jobs.index') ? 'active' : '' }}">What We Do</a>
                     <a href="#values" class="nav-item nav-link">Our Values</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="nav-item nav-link">Register</a>
+                    <a href="#contact" class="nav-item nav-link">Contact</a>
                     @if (Route::has('login'))
                         @auth
                             <a href="{{ route('dashboard') }}" class="nav-item nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
@@ -103,7 +105,7 @@
                             </form>
                         @else
                             <button class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="register-btn">Register</a>
+                            <a href="#" class="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
                         @endauth
                     @endif
                 </div>
@@ -279,7 +281,7 @@
                         <a class="btn btn-link text-white" href="#about">About Us</a>
                         <a class="btn btn-link text-white" href="#jobs">What We Do</a>
                         <a class="btn btn-link text-white" href="#values">Our Values</a>
-                        <a href="#" class="btn btn-link text-white" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+                        <a class="btn btn-link text-white" href="#contact">Contact</a>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Follow Us</h5>
@@ -328,110 +330,124 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="registerModalLabel">Register as an Applicant</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('registrations.store') }}" enctype="multipart/form-data">
+                    <div id="register-success-message" class="alert alert-success d-none" role="alert"></div>
+                    <div id="register-error-message" class="alert alert-danger d-none" role="alert"></div>
+                    <form id="newRegistrationForm" method="POST" action="{{ route('newregistrations.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="row g-3">
+                        <div class="row">
                             <div class="col-md-6">
-                                <label for="names" class="form-label">Full Name</label>
-                                <input type="text" class="form-control @error('names') is-invalid @enderror" id="names" name="names" value="{{ old('names') }}" required>
-                                @error('names')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="form-group">
+                                    <label for="names">Full Name</label>
+                                    <input type="text" class="form-control registration-modal-details" id="names" name="names" required>
+                                    <span class="text-danger error-names custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" class="form-control registration-modal-details" id="phone" name="phone" required pattern="^(?:\+250|07)\d{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
+                                    <span class="text-danger error-phone custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control registration-modal-details" id="email" name="email" required>
+                                    <span class="text-danger error-email custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_number">ID Number</label>
+                                    <input type="text" class="form-control registration-modal-details" id="id_number" name="id_number" required pattern="\d{16}" title="Must be 16 digits">
+                                    <span class="text-danger error-id_number custom-error"></span>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" required placeholder="+250xxxxxxxx">
-                                @error('phone')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="form-group">
+                                    <label for="department_id">Department</label>
+                                    <select class="form-control registration-modal-details" id="department_id" name="department_id" required>
+                                        <option value="">Select Department</option>
+                                        @forelse ($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @empty
+                                            <option value="" disabled>No departments available</option>
+                                        @endforelse
+                                    </select>
+                                    <span class="text-danger error-department_id custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="province_id">Province</label>
+                                    <select class="form-control registration-modal-details" id="province_id" name="province_id" required>
+                                        <option value="">Select Province</option>
+                                        @forelse ($provinces as $province)
+                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @empty
+                                            <option value="" disabled>No provinces available</option>
+                                        @endforelse
+                                    </select>
+                                    <span class="text-danger error-province_id custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="district_id">District</label>
+                                    <select class="form-control registration-modal-details" id="district_id" name="district_id" required>
+                                        <option value="">Select District</option>
+                                        <option value="1">Gasabo</option>
+                                        <option value="6">Kicukiro</option>
+                                        <option value="11">Nyarugenge</option>
+                                    </select>
+                                    <span class="text-danger error-district_id custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sector_id">Sector</label>
+                                    <select class="form-control registration-modal-details" id="sector_id" name="sector_id" required>
+                                        <option value="">Select Sector</option>
+                                        <option value="1">Sector A</option>
+                                        <option value="2">Sector B</option>
+                                        <option value="3">Sector C</option>
+                                    </select>
+                                    <span class="text-danger error-sector_id custom-error"></span>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
-                                @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="id_number" class="form-label">ID Number</label>
-                                <input type="text" class="form-control @error('id_number') is-invalid @enderror" id="id_number" name="id_number" value="{{ old('id_number') }}" required maxlength="16">
-                                @error('id_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="department_id" class="form-label">Department</label>
-                                <select class="form-control @error('department_id') is-invalid @enderror" id="department_id" name="department_id" required>
-                                    <option value="">Select Department</option>
-                                    @foreach ($departments as $department)
-                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('department_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="province_id" class="form-label">Province</label>
-                                <select class="form-control @error('province_id') is-invalid @enderror" id="province_id" name="province_id" required>
-                                    <option value="">Loading Provinces...</option>
-                                </select>
-                                @error('province_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="district_id" class="form-label">District</label>
-                                <select class="form-control @error('district_id') is-invalid @enderror" id="district_id" name="district_id" required>
-                                    <option value="">Select District</option>
-                                </select>
-                                @error('district_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="sector_id" class="form-label">Sector</label>
-                                <select class="form-control @error('sector_id') is-invalid @enderror" id="sector_id" name="sector_id" required>
-                                    <option value="">Select Sector</option>
-                                </select>
-                                @error('sector_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="cv" class="form-label">CV</label>
-                                <input type="file" class="form-control @error('cv') is-invalid @enderror" id="cv" name="cv">
-                                @error('cv')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="degree" class="form-label">Degree</label>
-                                <input type="file" class="form-control @error('degree') is-invalid @enderror" id="degree" name="degree">
-                                @error('degree')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label for="id_doc" class="form-label">ID Document</label>
-                                <input type="file" class="form-control @error('id_doc') is-invalid @enderror" id="id_doc" name="id_doc">
-                                @error('id_doc')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-primary py-2 px-4">Register</button>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="cv">Upload CV</label>
+                                    <input type="file" class="form-control registration-modal-details" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                                    <span class="text-danger error-cv custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="degree">Upload Degree</label>
+                                    <input type="file" class="form-control registration-modal-details" id="degree" name="degree" accept=".pdf,.doc,.docx">
+                                    <span class="text-danger error-degree custom-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_doc">Upload ID Document</label>
+                                    <input type="file" class="form-control registration-modal-details" id="id_doc" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
+                                    <span class="text-danger error-id_doc custom-error"></span>
+                                </div>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-primary mt-3">Submit Registration</button>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header bg-success text-white" style="border-radius: 20px 20px 0 0;">
+                    <h5 class="modal-title" id="successModalLabel">Registration Successful</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <p class="mb-4" id="successMessage"></p>
+                    <button type="button" class="btn btn-success w-100 py-2" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -445,134 +461,115 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.header-carousel').owlCarousel({
-                loop: true,
-                margin: 0,
-                nav: true,
-                dots: true,
-                autoplay: true,
-                autoplayTimeout: 6000,
-                responsive: {
-                    0: { items: 1 },
-                    600: { items: 1 },
-                    1000: { items: 1 }
-                }
-            });
+    $(document).ready(function() {
+        $('.header-carousel').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 1 },
+                1000: { items: 1 }
+            }
+        });
 
-            $('a.nav-link, a.btn-link, .btn-register').on('click', function(e) {
-                if (this.hash !== "") {
-                    e.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: $(this.hash).offset().top
-                    }, 800, function() {
-                        window.location.hash = this.hash;
-                    });
-                }
-            });
-
-            particlesJS('parallax', {
-                particles: {
-                    number: { value: 80, density: { enable: true, value_area: 800 } },
-                    color: { value: '#38b2ac' },
-                    shape: { type: 'circle' },
-                    opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
-                    size: { value: 3, random: true, anim: { enable: false } },
-                    line_linked: { enable: false },
-                    move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
-                },
-                interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } } },
-                retina_detect: true
-            });
-
-            $("#spinner").removeClass("show");
-
-            new WOW().init();
-
-            // Load provinces when modal opens
-            $('#registerModal').on('shown.bs.modal', function () {
-                $('#province_id').html('<option value="">Loading Provinces...</option>');
-                $.ajax({
-                    url: '/provinces',
-                    type: 'GET',
-                    success: function(data) {
-                        var html = '<option value="">Select Province</option>';
-                        if (data && data.length > 0) {
-                            $.each(data, function(key, value) {
-                                html += '<option value="' + value.id + '">' + value.name + '</option>';
-                            });
-                        } else {
-                            html += '<option value="">No Provinces Available</option>';
-                        }
-                        $('#province_id').html(html);
-                    },
-                    error: function(xhr) {
-                        console.error('Error fetching provinces:', xhr.status, xhr.responseText);
-                        $('#province_id').html('<option value="">Error Fetching Provinces</option>');
-                    }
+        $('a.nav-link, a.btn-link, .btn-register').on('click', function(e) {
+            if (this.hash !== "") {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 800, function() {
+                    window.location.hash = this.hash;
                 });
-            });
+            }
+        });
 
-            // Dynamic district dropdown
-            $('#province_id').on('change', function() {
-                var provinceId = $(this).val();
-                $('#district_id').html('<option value="">Loading Districts...</option>');
-                if (provinceId) {
-                    $.ajax({
-                        url: '/districts/' + provinceId,
-                        type: 'GET',
-                        success: function(data) {
-                            var html = '<option value="">Select District</option>';
-                            if (data && data.length > 0) {
-                                $.each(data, function(key, value) {
-                                    html += '<option value="' + value.id + '">' + value.name + '</option>';
-                                });
-                            } else {
-                                html += '<option value="">No Districts Available</option>';
-                            }
-                            $('#district_id').html(html);
-                            $('#sector_id').html('<option value="">Select Sector</option>');
-                        },
-                        error: function(xhr) {
-                            console.error('Error fetching districts:', xhr.status, xhr.responseText);
-                            $('#district_id').html('<option value="">Error Fetching Districts</option>');
-                        }
-                    });
-                } else {
-                    $('#district_id').html('<option value="">Select District</option>');
-                    $('#sector_id').html('<option value="">Select Sector</option>');
-                }
-            });
+        particlesJS('parallax', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#38b2ac' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+                size: { value: 3, random: true, anim: { enable: false } },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } } },
+            retina_detect: true
+        });
 
-            // Dynamic sector dropdown
-            $('#district_id').on('change', function() {
-                var districtId = $(this).val();
-                $('#sector_id').html('<option value="">Loading Sectors...</option>');
-                if (districtId) {
-                    $.ajax({
-                        url: '/sectors/' + districtId,
-                        type: 'GET',
-                        success: function(data) {
-                            var html = '<option value="">Select Sector</option>';
-                            if (data && data.length > 0) {
-                                $.each(data, function(key, value) {
-                                    html += '<option value="' + value.id + '">' + value.name + '</option>';
-                                });
-                            } else {
-                                html += '<option value="">No Sectors Available</option>';
-                            }
-                            $('#sector_id').html(html);
-                        },
-                        error: function(xhr) {
-                            console.error('Error fetching sectors:', xhr.status, xhr.responseText);
-                            $('#sector_id').html('<option value="">Error Fetching Sectors</option>');
+        $("#spinner").removeClass("show");
+
+        new WOW().init();
+
+        $('#registerModal').on('show.bs.modal', function() {
+            $(this).find('.modal-dialog').css('opacity', '0').animate({ opacity: 1 }, 300);
+        });
+
+        $('#newRegistrationForm').on('submit', function(e) {
+            e.preventDefault();
+            $('.custom-error').text(''); // Clear all error messages
+            $('#register-success-message, #register-error-message').addClass('d-none');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('#spinner').addClass('show');
+                    $(this).find('button[type="submit"]').prop('disabled', true).text('Submitting...');
+                },
+                complete: function() {
+                    $('#spinner').removeClass('show');
+                    $(this).find('button[type="submit"]').prop('disabled', false).text('Submit Registration');
+                },
+                success: function(response) {
+                    $('#registerModal').modal('hide');
+                    $('#successMessage').text(response.message);
+                    $('#successModal').modal('show');
+                    setTimeout(function() {
+                        $('#successModal').modal('hide');
+                    }, 5000);
+                },
+                error: function(xhr) {
+                    $('#spinner').removeClass('show');
+                    if (xhr.status === 422) {
+                        var errors = xhr.responseJSON.errors;
+                        $('#register-error-message').addClass('d-none');
+                        if (errors['email']) {
+                            $('.error-email').text('This email is already in use. Please try a different one.');
                         }
-                    });
-                } else {
-                    $('#sector_id').html('<option value="">Select Sector</option>');
+                        if (errors['phone']) {
+                            $('.error-phone').text('This phone number is already registered. Please use another.');
+                        }
+                        if (errors['id_number']) {
+                            $('.error-id_number').text('This ID number is already taken. Please provide a unique one.');
+                        }
+                        if (errors['names'] || errors['department_id'] || errors['province_id'] || errors['district_id'] || errors['sector_id'] || errors['cv'] || errors['degree'] || errors['id_doc']) {
+                            $.each(errors, function(key, value) {
+                                if (key !== 'email' && key !== 'phone' && key !== 'id_number') {
+                                    $('.error-' + key).text(value[0]);
+                                }
+                            });
+                        }
+                    } else {
+                        $('#register-error-message').removeClass('d-none').text('An error occurred. Please try again later.');
+                    }
                 }
             });
         });
+
+        @if (session('success'))
+            $('#successModal').modal('show');
+        @endif
+    });
     </script>
 </body>
 </html>

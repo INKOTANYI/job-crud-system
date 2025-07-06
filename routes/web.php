@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AkaziController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ApplicableController;
+use App\Http\Controllers\NewRegistrationController;
 
 // Authentication routes
 Auth::routes();
@@ -20,7 +21,27 @@ Route::get('/jobs/{job_id}', [JobController::class, 'show'])->name('jobs.show');
 Route::get('/job/{id}/apply', [JobController::class, 'apply'])->name('job.apply'); // Public apply route
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store'); // Public contact form
 Route::get('/registrations/check-email', [RegistrationController::class, 'checkEmail'])->name('registrations.check-email'); // Public email check
-Route::post('registrations', [RegistrationController::class, 'store'])->name('registrations.store'); // Public registration store for applications
+Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store'); // Public registration store for applications
+
+// New Registration routes (public)
+Route::get('/register', [NewRegistrationController::class, 'create'])->name('newregistrations.create');
+Route::post('/newregistrations', [NewRegistrationController::class, 'store'])->name('newregistrations.store');
+
+// API routes for dependent dropdowns (moved to api.php for clarity, but kept here for now as per your input)
+Route::get('/api/provinces', function () {
+    $provinces = \App\Models\Province::select('id', 'name')->get();
+    return response()->json($provinces);
+});
+
+Route::get('/api/districts/{provinceId}', function ($provinceId) {
+    $districts = \App\Models\District::where('province_id', $provinceId)->select('id', 'name', 'province_id')->get();
+    return response()->json($districts);
+});
+
+Route::get('/api/sectors/{districtId}', function ($districtId) {
+    $sectors = \App\Models\Sector::where('district_id', $districtId)->select('id', 'name', 'district_id')->get();
+    return response()->json($sectors);
+});
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {

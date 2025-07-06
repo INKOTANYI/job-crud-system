@@ -9,18 +9,25 @@
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
     <style>
         .small-box { transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: 10px; }
         .small-box:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
-        .content-header { background: #f8f9fa; padding: 15px; border-bottom: 1px solid #dee2e6; }
+        .content-header { background: #f8f9fa; padding: 15px; border-bottom: 1px solid #dee2e6; animation: fadeIn 0.5s ease-out; }
         .brand-text { font-weight: 600; color: #ffffff; }
-        .nav-link { color: #c2c7d0; }
+        .nav-link { color: #c2c7d0; transition: color 0.3s ease; }
         .nav-link.active { background-color: #00B074; color: #fff !important; }
+        .nav-link:hover { color: #ffffff; }
         .main-footer { background: #343a40; color: #ffffff; }
-        .card { border: none; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+        .card { border: none; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); animation: slideUp 0.5s ease-out; }
         .card-header { background: #ffffff; border-bottom: 1px solid #e9ecef; }
         .table-responsive { margin-top: 20px; }
         #recentActivities { max-height: 300px; overflow-y: auto; }
+        .chart-container { position: relative; margin-top: 20px; height: 400px; animation: fadeIn 0.5s ease-out 0.2s both; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        body { background: linear-gradient(135deg, #f0f4f8, #ffffff); transition: background 0.5s ease; }
+        .hidden-link { display: none !important; } /* Hide unwanted links */
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -64,18 +71,30 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('/new-registrations') }}" class="nav-link {{ request()->is('new-registrations*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>New Registrations</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/contact-us') }}" class="nav-link {{ request()->is('contact-us*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-envelope"></i>
+                            <p>Contact Us</p>
+                        </a>
+                    </li>
+                    <li class="nav-item hidden-link"> <!-- Hide Companies -->
                         <a href="{{ url('/companies') }}" class="nav-link {{ request()->is('companies*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-building"></i>
                             <p>Companies</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item hidden-link"> <!-- Hide Jobs -->
                         <a href="{{ url('/jobs') }}" class="nav-link {{ request()->is('jobs*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-briefcase"></i>
                             <p>Jobs</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item hidden-link"> <!-- Hide Applications -->
                         <a href="{{ url('/applications') }}" class="nav-link {{ request()->is('applications*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>Applications</p>
@@ -100,112 +119,42 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <a href="{{ url('/companies') }}" class="small-box bg-info">
+                    <div class="col-lg-6 col-12">
+                        <a href="{{ url('/new-registrations') }}" class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{ $companyCount }}</h3>
-                                <p>Companies</p>
+                                <h3>{{ $newRegistrationCount }}</h3>
+                                <p>Total New Registrations</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-building"></i>
+                                <i class="fas fa-user-plus"></i>
                             </div>
-                            <a href="{{ url('/companies') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ url('/new-registrations') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </a>
                     </div>
-                    <div class="col-lg-3 col-6">
-                        <a href="{{ url('/jobs') }}" class="small-box bg-success">
+                    <div class="col-lg-6 col-12">
+                        <a href="{{ url('/contact-us') }}" class="small-box bg-primary">
                             <div class="inner">
-                                <h3>{{ $jobCount }}</h3>
-                                <p>Jobs</p>
+                                <h3>{{ $contactCount }}</h3>
+                                <p>Total SMS Contact Us</p>
                             </div>
                             <div class="icon">
-                                <i class="fas fa-briefcase"></i>
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <a href="{{ url('/jobs') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <a href="{{ url('/applications') }}" class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>{{ $applicationCount }}</h3>
-                                <p>Applications</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-file-alt"></i>
-                            </div>
-                            <a href="{{ url('/applications') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <a href="{{ url('/users') }}" class="small-box bg-primary">
-                            <div class="inner">
-                                <h3>{{ $userCount }}</h3>
-                                <p>Users</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <a href="{{ url('/users') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ url('/contact-us') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </a>
                     </div>
                 </div>
 
-                <!-- Jobs and Applications Section -->
+                <!-- Report Graph -->
                 <div class="row mt-4">
-                    <div class="col-md-6">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Recent Jobs</h3>
+                                <h3 class="card-title">New Registrations Report</h3>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Company</th>
-                                                <th>Posted</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($recentJobs as $job)
-                                                <tr>
-                                                    <td>{{ $job->title }}</td>
-                                                    <td>{{ $job->company->name ?? 'N/A' }}</td>
-                                                    <td>{{ $job->created_at->diffForHumans() }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Recent Applications</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Applicant</th>
-                                                <th>Job</th>
-                                                <th>Applied</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($recentApplications as $application)
-                                                <tr>
-                                                    <td>{{ $application->names }}</td>
-                                                    <td>{{ $application->job->title ?? 'N/A' }}</td>
-                                                    <td>{{ $application->created_at->diffForHumans() }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="chart-container">
+                                    <canvas id="applicationsChart"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -227,5 +176,59 @@
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+$(document).ready(function() {
+    // Chart for Registrations by District and Department
+    const ctx = document.getElementById('applicationsChart').getContext('2d');
+    const applicationsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                ...{{ $applicationByDistrict->pluck('district.name')->toJson() }},
+                ...{{ $applicationByDepartment->pluck('department.name')->toJson() }}
+            ],
+            datasets: [{
+                label: 'Registrations',
+                data: [
+                    ...{{ $applicationByDistrict->pluck('total')->toJson() }},
+                    ...{{ $applicationByDepartment->pluck('total')->toJson() }}
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Number of Registrations' }
+                },
+                x: { title: { display: true, text: 'Districts and Departments' } }
+            },
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Registrations by District and Department' }
+            },
+            animation: { duration: 1000, easing: 'easeOutQuart' }
+        }
+    });
+});
+</script>
 </body>
 </html>

@@ -25,7 +25,6 @@ class RegistrationController extends Controller
         $provinces = Province::all();
         $sectors = Sector::all();
 
-        // Prepare districts and sectors dynamically for each registration
         $registrationData = $registrations->map(function ($registration) {
             return [
                 'registration' => $registration,
@@ -65,13 +64,10 @@ class RegistrationController extends Controller
             'province_id' => ['required', 'exists:provinces,id'],
             'district_id' => ['required', 'exists:districts,id'],
             'sector_id' => ['required', 'exists:sectors,id'],
-            // Removed 'job_id' from validation and logic
         ]);
 
-        // Removed job_id check since it's not in registrations
         $data = $request->only(['names', 'phone', 'email', 'id_number', 'department_id', 'province_id', 'district_id', 'sector_id']);
 
-        // Associate with authenticated user if logged in, otherwise use email as identifier
         if (Auth::check()) {
             $data['user_id'] = Auth::id();
         }
@@ -87,6 +83,9 @@ class RegistrationController extends Controller
         }
 
         $registration = Registration::create($data);
+
+        // Set session success message for the modal
+        session()->flash('success', 'Thank you for submitting your docs on our platform. We will inform you when needed. Regards.');
 
         return response()->json(['registration' => $registration->load(['department', 'province', 'district', 'sector']), 'message' => 'Registration created successfully'], 201);
     }
@@ -118,7 +117,6 @@ class RegistrationController extends Controller
             'province_id' => ['required', 'exists:provinces,id'],
             'district_id' => ['required', 'exists:districts,id'],
             'sector_id' => ['required', 'exists:sectors,id'],
-            // Removed 'job_id' from validation
         ]);
 
         $data = $request->only(['names', 'phone', 'email', 'id_number', 'department_id', 'province_id', 'district_id', 'sector_id']);
@@ -204,7 +202,7 @@ class RegistrationController extends Controller
     public function checkEmail(Request $request)
     {
         $email = $request->input('email');
-        $ignoreId = $request->input('ignore_id', 0); // For edit case, ignore current registration
+        $ignoreId = $request->input('ignore_id', 0);
 
         $registration = Registration::where('email', $email)
             ->where('id', '!=', $ignoreId)

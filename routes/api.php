@@ -21,5 +21,5 @@ Route::get('/sectors/{districtId}', function ($districtId) {
     return response()->json($sectors);
 });
 
-// API endpoint for jobs (distinct from web /jobs)
-Route::get('/api/jobs', [JobController::class, 'index'])->name('api.jobs.index');
+// API endpoint for jobs
+Route::get('/jobs', [JobController::class, 'index'])->name('api.jobs.index');
