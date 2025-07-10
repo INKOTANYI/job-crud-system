@@ -1,43 +1,55 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Company;
-use App\Models\Job;
-use App\Models\Applicable;
-use App\Models\NewRegistration; // Assuming this is your model for new registrations
-use App\Models\Contact; // Assuming this is your model for contact us SMS
+use App\Models\NewApplication;
+use App\Models\Contact;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $applicationCount = Applicable::count(); // Total new applications
-        $newRegistrationCount = NewRegistration::count(); // Total new registrations
-        $contactCount = Contact::count(); // Total SMS from contact us
+        try {
+            // Counts
+            $newRegistrationCount = NewApplication::count();
+            $contactCount = Contact::count();
 
-        // Fetch recent applications and new registrations (limit to 5 for preview)
-        $recentApplications = Applicable::with('job')->latest()->take(5)->get();
-        $recentNewRegistrations = NewRegistration::latest()->take(5)->get();
+            // Recent registrations
+            $recentRegistrations = NewApplication::with(['department', 'province', 'district', 'sector'])
+                ->latest()
+                ->take(10)
+                ->get();
 
-        // Data for graph (group by district and department)
-        $applicationByDistrict = Applicable::select('district_id', \DB::raw('count(*) as total'))
-            ->groupBy('district_id')
-            ->with('district') // Assuming a relationship with districts
-            ->get();
-        $applicationByDepartment = Applicable::select('department_id', \DB::raw('count(*) as total'))
-            ->groupBy('department_id')
-            ->with('department') // Assuming a relationship with departments
-            ->get();
+            return view('dashboard', compact(
+                'newRegistrationCount',
+                'contactCount',
+                'recentRegistrations'
+            ));
+        } catch (\Exception $e) {
+            \Log::error('Dashboard Error: ' . $e->getMessage());
+            return back()->with('error', 'An error occurred while loading the dashboard.');
+        }
+    }
 
-        return view('dashboard', compact(
-            'applicationCount',
-            'newRegistrationCount',
-            'contactCount',
-            'recentApplications',
-            'recentNewRegistrations',
-            'applicationByDistrict',
-            'applicationByDepartment'
-        ));
+    public function exportPdf()
+    {
+        try {
+            $data = [
+                'newRegistrationCount' => NewApplication::count(),
+                'contactCount' => Contact::count(),
+                'recentRegistrations' => NewApplication::with(['department', 'province', 'district', 'sector'])
+                    ->latest()
+                    ->take(10)
+                    ->get(),
+            ];
+
+            $pdf = Pdf::loadView('reports.pdf', $data);
+            return $pdf->download('dashboard_report_' . now()->format('Ymd_His') . '.pdf');
+        } catch (\Exception $e) {
+            \Log::error('PDF Export Error: ' . $e->getMessage());
+            return back()->with('error', 'Failed to export PDF.');
+        }
     }
 }

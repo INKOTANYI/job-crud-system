@@ -23,4 +23,10 @@ class ContactController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function index()
+    {
+        $contacts = Contact::latest()->get();
+        return view('contacts.index', compact('contacts'));
+    }
 }

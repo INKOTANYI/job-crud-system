@@ -6,11 +6,13 @@
     <title>Job Portal - Smart Career Solutions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Smart job portal for career opportunities" name="keywords">
-    <meta content="Connect with top jobs and talents effortlessly" name="description">
-    <link href="{{ asset('img/favicon.ico') }}" rel="icon">
+    <meta content="Connect with top jobs and talents effortlessly with JobSmart, your premier career platform." name="description">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="JobSmart Team">
+    <link rel="icon" href="{{ asset('img/favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -19,66 +21,69 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #f5f7fa; color: #333; overflow-x: hidden; }
+        .top-header { background: #2d3748; color: #fff; padding: 10px 0; font-size: 0.9rem; transition: background 0.3s ease; }
+        .top-header .contact-info a, .top-header .social-icons a { color: #fff; text-decoration: none; margin: 0 10px; transition: color 0.3s ease; }
+        .top-header .social-icons a:hover { color: #38b2ac; }
         .header-carousel { position: relative; height: 100vh; overflow: hidden; }
         .header-carousel .owl-carousel-item { height: 100vh; }
         .header-carousel .owl-carousel-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: filter 0.5s ease; }
-        .header-carousel .owl-carousel-item:hover img { filter: brightness(0.7); }
         .header-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; z-index: 1; }
-        .header-content h1 { font-size: 4.5rem; font-weight: 700; background: linear-gradient(45deg, #fff, #e6f0fa); -webkit-background-clip: text; background-clip: text; color: transparent; text-transform: uppercase; animation: fadeInDown 1s ease-out; }
-        .header-content p { font-size: 1.6rem; color: #e6f0fa; margin: 1rem 0; animation: fadeInUp 1.5s ease-out; }
-        .header-content .btn-register { background: linear-gradient(90deg, #38b2ac, #6b46c1); border: none; padding: 1.2rem 3rem; font-size: 1.3rem; font-weight: 600; color: #fff; border-radius: 35px; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .header-content h1 { font-size: 4.5rem; font-weight: 700; background: linear-gradient(45deg, #fff, #e6f0fa); -webkit-background-clip: text; background-clip: text; color: transparent; text-transform: uppercase; animation: fadeIn 1s ease-out; }
+        .header-content p { font-size: 1.6rem; color: #e6f0fa; margin: 1rem 0; animation: fadeInUp 1s ease-out 0.5s backwards; }
+        .header-content .btn-register { background: linear-gradient(90deg, #38b2ac, #6b46c1); border: none; padding: 1.2rem 3rem; font-size: 1.3rem; font-weight: 600; color: #fff; border-radius: 35px; transition: all 0.3s ease; }
         .header-content .btn-register:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(56, 178, 172, 0.4); }
-        .parallax { background: linear-gradient(rgba(45, 55, 72, 0.7), rgba(45, 55, 72, 0.7)); height: 100%; width: 100%; position: absolute; top: 0; left: 0; z-index: 0; }
-        .particles { position: absolute; width: 100%; height: 100%; z-index: 0; }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes move { 0% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-10px) translateX(10px); } 100% { transform: translateY(0) translateX(0); } }
-        .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .navbar-nav { flex-direction: column; align-items: flex-start; padding: 1rem 0; }
-        .navbar-nav .nav-link { padding: 0.8rem 2rem; width: 100%; text-align: left; color: #2d3748; font-weight: 500; transition: color 0.3s ease, background-color 0.3s ease; }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #fff; background: linear-gradient(90deg, #2d3748, #4fd1c5); }
-        .login-btn, .register-btn { margin: 0.5rem 0; padding: 0.75rem 2rem; border-radius: 25px; border: none; font-weight: 600; width: 100%; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .parallax { background: linear-gradient(rgba(45, 55, 72, 0.7), rgba(45, 55, 72, 0.7)); height: 100%; width: 100%; position: absolute; top: 0; left: 0; z-index: 0; transition: opacity 0.5s ease; }
+        .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: background 0.3s ease; }
+        .navbar-nav .nav-link { padding: 0.8rem 1.5rem; color: #2d3748; font-weight: 500; transition: all 0.3s ease; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #fff; background: linear-gradient(90deg, #2d3748, #4fd1c5); border-radius: 5px; }
+        .login-btn, .register-btn { margin: 0 0.5rem; padding: 0.5rem 1.5rem; border-radius: 25px; border: none; font-weight: 600; transition: all 0.3s ease; }
         .login-btn { background: linear-gradient(135deg, #38b2ac, #6b46c1); color: #fff; }
-        .login-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(56, 178, 172, 0.5); }
+        .login-btn:hover { background: linear-gradient(135deg, #2d3748, #38b2ac); }
         .register-btn { background: linear-gradient(135deg, #6b46c1, #38b2ac); color: #fff; }
-        .register-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(107, 70, 193, 0.5); }
-        .who-we-are { background: linear-gradient(135deg, #edf2f7, #ffffff); padding: 40px 0; }
-        .who-we-are h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
-        .who-we-are p { color: #4a5568; font-size: 1.2rem; line-height: 2; text-align: center; max-width: 900px; margin: 0 auto 40px; }
-        .what-we-do { background: linear-gradient(135deg, #ffffff, #e6f0fa); padding: 40px 0; }
-        .what-we-do h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
-        .what-we-do .service-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 20px; margin-bottom: 20px; transition: transform 0.4s ease, box-shadow 0.4s ease; text-align: center; }
-        .what-we-do .service-item:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
-        .what-we-do .service-item h5 { color: #2d3748; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .what-we-do .service-item p { color: #4a5568; font-size: 1.1rem; }
-        .our-core-values { background: linear-gradient(135deg, #f7fafc, #ffffff); padding: 40px 0; }
-        .our-core-values h1 { color: #2d3748; font-size: 2.5rem; font-weight: 600; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
-        .our-core-values p { color: #4a5568; font-size: 1.2rem; line-height: 2; text-align: center; max-width: 900px; margin: 0 auto 40px; }
-        .our-core-values .value-item { background: #fff; border: none; border-radius: 20px; padding: 30px; text-align: center; transition: transform 0.4s ease, box-shadow 0.4s ease; margin-bottom: 20px; }
-        .our-core-values .value-item:hover { transform: translateY(-15px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
-        .our-core-values .value-item i { font-size: 3rem; color: #38b2ac; margin-bottom: 1.5rem; }
-        .our-core-values .value-item h5 { color: #2d3748; font-size: 1.5rem; font-weight: 600; }
-        .our-core-values .value-item p { color: #4a5568; font-size: 1.1rem; }
+        .register-btn:hover { background: linear-gradient(135deg, #38b2ac, #2d3748); }
+        .who-we-are, .what-we-do, .our-core-values { background: linear-gradient(135deg, #edf2f7, #ffffff); padding: 40px 0; transition: background 0.5s ease; }
+        .what-we-do .service-item, .our-core-values .value-item { background: #fff; border-radius: 20px; padding: 20px; text-align: center; transition: all 0.4s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .what-we-do .service-item:hover, .our-core-values .value-item:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
         .footer { background: linear-gradient(135deg, #2d3748, #1a202c); color: #ffffff; padding: 60px 0; }
-        .back-to-top { background: linear-gradient(90deg, #2d3748, #38b2ac); border-radius: 50%; transition: transform 0.4s ease, opacity 0.4s ease; }
-        .back-to-top:hover { transform: rotate(360deg); opacity: 0.9; }
+        .back-to-top { background: linear-gradient(90deg, #2d3748, #38b2ac); border-radius: 50%; transition: all 0.3s ease; }
+        .back-to-top:hover { transform: scale(1.1); }
         .loading-spinner { display: none; width: 2.5rem; height: 2.5rem; border: 4px solid #38b2ac; border-top: 4px solid transparent; border-radius: 50%; animation: spin 1.2s linear infinite; margin: 0 auto; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        #spinner { display: none; }
-        .map-container { position: relative; height: 400px; }
-        .map-container iframe { width: 100%; height: 100%; border: 0; border-radius: 15px; }
-        .map-overlay { position: absolute; top: 10px; left: 10px; background: rgba(255, 255, 255, 0.9); padding: 5px 10px; border-radius: 5px; display: flex; gap: 5px; z-index: 1; }
-        .map-overlay button { background: #38b2ac; color: #fff; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
-        .map-overlay button:hover { background: #2d3748; }
+        .map-container { position: relative; height: 400px; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        .map-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(45, 55, 72, 0.8); padding: 20px; border-radius: 10px; text-align: center; }
+        .map-overlay button { background: linear-gradient(90deg, #38b2ac, #6b46c1); border: none; padding: 10px 20px; color: #fff; margin: 5px; border-radius: 25px; transition: all 0.3s ease; }
+        .map-overlay button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(56, 178, 172, 0.4); }
         .modal-content { border-radius: 10px; }
         .modal-header { background: #38b2ac; color: #fff; }
-        .modal-header .btn-close { color: #fff; }
+        .modal-header.bg-success { background: #28a745; }
         .custom-error { color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem; display: block; }
+        .form-control { border-radius: 8px; border: 1px solid #ced4da; padding: 10px; transition: all 0.3s ease; }
+        .form-control:focus { border-color: #38b2ac; box-shadow: 0 0 5px rgba(56, 178, 172, 0.5); }
+        .btn-primary { background: #38b2ac; border: none; border-radius: 8px; padding: 10px; transition: all 0.3s ease; }
+        .btn-primary:hover { background: #2d3748; }
+        .alert-success, .alert-danger { border-radius: 8px; padding: 10px; margin-bottom: 1rem; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
+    <div class="top-header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="contact-info">
+                <a href="mailto:info@jobsmart.com"><i class="fa fa-envelope me-2"></i>info@jobsmart.com</a>
+                <a href="tel:+250788123456" class="ms-4"><i class="fa fa-phone-alt me-2"></i>+250 788 123 456</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
     <div class="container-xxl bg-white p-0">
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner" class="bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3.5rem; height: 3.5rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -92,20 +97,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="#about" class="nav-item nav-link {{ request()->routeIs('welcome') ? 'active' : '' }}">About Us</a>
-                    <a href="#jobs" class="nav-item nav-link {{ request()->routeIs('jobs.index') ? 'active' : '' }}">What We Do</a>
+                    <a href="#about" class="nav-item nav-link">About Us</a>
+                    <a href="#jobs" class="nav-item nav-link">What We Do</a>
                     <a href="#values" class="nav-item nav-link">Our Values</a>
                     <a href="#contact" class="nav-item nav-link">Contact</a>
                     @if (Route::has('login'))
                         @auth
-                            <a href="{{ route('dashboard') }}" class="nav-item nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="nav-item nav-link">Dashboard</a>
                             <a href="{{ route('logout') }}" class="nav-item nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         @else
                             <button class="login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-                            <a href="#" class="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+                            <button class="register-btn" data-bs-toggle="modal" data-bs-target="#registerModal">Apply</button>
                         @endauth
                     @endif
                 </div>
@@ -114,21 +119,21 @@
         <div class="container-fluid p-0 mb-0">
             <div class="owl-carousel header-carousel position-relative">
                 <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ asset('img/carousel-1.jpg') }}" alt="Job seekers at work">
+                    <img class="img-fluid" src="{{ asset('img/carousel-1.jpg') }}" alt="Job seekers at work" loading="lazy">
                     <div class="parallax"></div>
                     <div class="header-content">
                         <h1>Unlock Your Career</h1>
                         <p>Discover top opportunities with JobSmart</p>
-                        <a href="#" class="btn btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Register Now</a>
+                        <button class="btn btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Apply Now</button>
                     </div>
                 </div>
                 <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="{{ asset('img/carousel-2.jpg') }}" alt="Startup job environment">
+                    <img class="img-fluid" src="{{ asset('img/carousel-2.jpg') }}" alt="Startup job environment" loading="lazy">
                     <div class="parallax"></div>
                     <div class="header-content">
                         <h1>Build Your Future</h1>
                         <p>Connect with leading employers today</p>
-                        <a href="#" class="btn btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Register Now</a>
+                        <button class="btn btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Apply Now</button>
                     </div>
                 </div>
             </div>
@@ -136,7 +141,7 @@
         <div class="container-xxl py-5 who-we-are" id="about">
             <div class="container">
                 <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">About Us</h1>
-                <p class="wow fadeInUp" data-wow-delay="0.2s">JobSmart is a premier career solutions platform dedicated to connecting talented professionals with leading organizations. Our mission is to deliver exceptional job opportunities and innovative services, fostering a dynamic ecosystem where talent and ambition thrive.</p>
+                <p class="lead text-center wow fadeInUp" data-wow-delay="0.2s">At JobSmart, we’re more than just a job portal—we’re your partner in building a thriving career. Founded with a vision to bridge the gap between talent and opportunity, we’ve empowered thousands of professionals across Rwanda and beyond to find meaningful work that aligns with their skills and aspirations. Our journey began with a simple idea: to create a platform where ambition meets innovation. Today, we proudly connect top-tier candidates with leading organizations, fostering a community driven by excellence, diversity, and growth. With cutting-edge technology and a dedicated team, JobSmart is committed to shaping the future of work—one career at a time.</p>
             </div>
         </div>
         <div class="container-xxl py-5 what-we-do" id="jobs">
@@ -164,19 +169,19 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="service-item">
                             <h5>Skill Development</h5>
-                            <p>Offer training to enhance employability and career growth.</p>
+                            <p>Offer training programs to enhance your employability.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
                         <div class="service-item">
                             <h5>Resume Building</h5>
-                            <p>Assist in creating standout resumes for job applications.</p>
+                            <p>Assist in crafting professional resumes to stand out.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="service-item">
                             <h5>Interview Prep</h5>
-                            <p>Prepare candidates with mock interviews and strategies.</p>
+                            <p>Provide mock interviews to boost your confidence.</p>
                         </div>
                     </div>
                 </div>
@@ -185,27 +190,47 @@
         <div class="container-xxl py-5 our-core-values" id="values">
             <div class="container">
                 <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Values</h1>
-                <p class="wow fadeInUp" data-wow-delay="0.2s">At JobSmart, we uphold the highest standards of excellence, integrity, and innovation. Our commitment to delivering exceptional career solutions drives us to build lasting partnerships and empower professionals with the resources they need to thrive in a competitive world.</p>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="value-item">
                             <i class="fas fa-balance-scale"></i>
                             <h5>Integrity</h5>
-                            <p>We operate with transparency and ethical principles in all our endeavors.</p>
+                            <p>We operate with transparency and ethical principles.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
                         <div class="value-item">
                             <i class="fas fa-lightbulb"></i>
                             <h5>Innovation</h5>
-                            <p>We embrace cutting-edge solutions to redefine career opportunities.</p>
+                            <p>We embrace cutting-edge solutions to redefine opportunities.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="value-item">
                             <i class="fas fa-handshake"></i>
                             <h5>Partnership</h5>
-                            <p>We foster strong, collaborative relationships with our clients and partners.</p>
+                            <p>We foster collaborative relationships with clients.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="value-item">
+                            <i class="fas fa-users"></i>
+                            <h5>Diversity</h5>
+                            <p>We celebrate and include diverse talents and perspectives.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="value-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h5>Trust</h5>
+                            <p>We build lasting trust with every interaction.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="value-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h5>Excellence</h5>
+                            <p>We strive for the highest standards in all we do.</p>
                         </div>
                     </div>
                 </div>
@@ -221,29 +246,34 @@
                                 <h5 class="text-primary mb-4">Quick Contact</h5>
                                 <p><i class="fa fa-envelope me-3"></i>info@jobsmart.com</p>
                                 <p><i class="fa fa-phone-alt me-3"></i>+250 788 123 456</p>
-                                <p><i class="fa fa-map-marker-alt me-3"></i>123 Elegance St, Kigali, Rwanda</p>
+                                <p><i class="fa fa-map-marker-alt me-3"></i>123 Main St, Kigali, Rwanda</p>
                                 <div class="d-flex pt-2">
-                                    <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                    <a class="btn btn-square btn-light" href="#"><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-square btn-light me-2" href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-light me-2" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-light me-2" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn btn-square btn-light" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                             <div class="col-md-8">
                                 <h5 class="text-primary mb-4">Send Us a Message</h5>
-                                <form>
+                                <form id="contactForm" action="{{ route('contact.submit') }}" method="POST">
+                                    @csrf
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control border-0 bg-light px-4" placeholder="Your Name" style="height: 55px;">
+                                            <input type="text" class="form-control border-0 bg-light px-4" name="name" placeholder="Your Name" required>
+                                            <span class="custom-error error-name"></span>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="email" class="form-control border-0 bg-light px-4" placeholder="Your Email" style="height: 55px;">
+                                            <input type="email" class="form-control border-0 bg-light px-4" name="email" placeholder="Your Email" required>
+                                            <span class="custom-error error-email"></span>
                                         </div>
                                         <div class="col-12">
-                                            <input type="text" class="form-control border-0 bg-light px-4" placeholder="Subject" style="height: 55px;">
+                                            <input type="text" class="form-control border-0 bg-light px-4" name="subject" placeholder="Subject" required>
+                                            <span class="custom-error error-subject"></span>
                                         </div>
                                         <div class="col-12">
-                                            <textarea class="form-control border-0 bg-light px-4 py-3" rows="4" placeholder="Message"></textarea>
+                                            <textarea class="form-control border-0 bg-light px-4 py-3" name="message" rows="4" placeholder="Message" required></textarea>
+                                            <span class="custom-error error-message"></span>
                                         </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
@@ -259,6 +289,7 @@
                             <div class="map-overlay">
                                 <button onclick="window.location.href='mailto:info@jobsmart.com'">Email Us</button>
                                 <button onclick="window.open('tel:+250788123456')">Call Us</button>
+                                <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=123+Main+St,+Kigali,+Rwanda')">Get Directions</button>
                             </div>
                         </div>
                     </div>
@@ -270,8 +301,8 @@
                 <div class="row g-5">
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">JobSmart</h5>
-                        <p class="mb-4">Your premier destination for elite job opportunities and connections with top-tier employers.</p>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Elegance St, Kigali, Rwanda</p>
+                        <p class="mb-4">Your premier destination for elite job opportunities.</p>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Main St, Kigali, Rwanda</p>
                         <p><i class="fa fa-phone-alt me-3"></i>+250 788 123 456</p>
                         <p><i class="fa fa-envelope me-3"></i>info@jobsmart.com</p>
                     </div>
@@ -286,10 +317,10 @@
                     <div class="col-lg-4 col-md-6">
                         <h5 class="text-white mb-4">Follow Us</h5>
                         <div class="d-flex">
-                            <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-light me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-square btn-light" href="#"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square btn-light me-2" href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-light me-2" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-light me-2" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-square btn-light" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -298,7 +329,7 @@
                 <div class="copyright text-center">
                     <div class="row">
                         <div class="col-12 text-white">
-                            © <a class="text-white border-bottom" href="#">JobSmart</a>, All Rights Reserved. | Designed by <a class="text-white border-bottom" href="#">Wiser Wide Mind Ltd</a>
+                            © <a class="text-white border-bottom" href="#">JobSmart</a>, All Rights Reserved.
                         </div>
                     </div>
                 </div>
@@ -308,21 +339,23 @@
     </div>
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-                <div class="modal-header bg-primary text-white" style="border-radius: 20px 20px 0 0;">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="loginModalLabel">Login</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <form action="{{ route('login') }}" method="POST">
+                    <form id="loginForm" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <label for="email" class="form-label text-dark">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="login_email" class="form-label text-dark">Email address</label>
+                            <input type="email" class="form-control" id="login_email" name="email" required>
+                            <span class="custom-error error-email"></span>
                         </div>
                         <div class="mb-4">
-                            <label for="password" class="form-label text-dark">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <label for="login_password" class="form-label text-dark">Password</label>
+                            <input type="password" class="form-control" id="login_password" name="password" required>
+                            <span class="custom-error error-password"></span>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                     </form>
@@ -333,243 +366,345 @@
     <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="registerModalLabel">Register as an Applicant</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <div id="register-success-message" class="alert alert-success d-none" role="alert"></div>
                     <div id="register-error-message" class="alert alert-danger d-none" role="alert"></div>
-                    <form id="newRegistrationForm" method="POST" action="{{ route('newregistrations.store') }}" enctype="multipart/form-data">
+                    <form id="newApplicationForm" method="POST" action="{{ route('applications.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="row">
+                        <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="names">Full Name</label>
-                                    <input type="text" class="form-control registration-modal-details" id="names" name="names" required>
-                                    <span class="text-danger error-names custom-error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="text" class="form-control registration-modal-details" id="phone" name="phone" required pattern="^(?:\+250|07)\d{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
-                                    <span class="text-danger error-phone custom-error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control registration-modal-details" id="email" name="email" required>
-                                    <span class="text-danger error-email custom-error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="id_number">ID Number</label>
-                                    <input type="text" class="form-control registration-modal-details" id="id_number" name="id_number" required pattern="\d{16}" title="Must be 16 digits">
-                                    <span class="text-danger error-id_number custom-error"></span>
+                                    <label for="full_name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="full_name" name="full_name" required>
+                                    <span class="custom-error error-full_name"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="department_id">Department</label>
-                                    <select class="form-control registration-modal-details" id="department_id" name="department_id" required>
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" required pattern="^(?:\+250|07)[0-9]{8}$" title="Phone must start with +250 or 07 followed by 8 digits">
+                                    <span class="custom-error error-phone"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <span class="custom-error error-email"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id_number" class="form-label">ID Number</label>
+                                    <input type="text" class="form-control" id="id_number" name="id_number" required pattern="[0-9]{16}" title="ID number must be 16 digits">
+                                    <span class="custom-error error-id_number"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="department_id" class="form-label">Department</label>
+                                    <select class="form-control" id="department_id" name="department_id" required>
                                         <option value="">Select Department</option>
-                                        @forelse ($departments as $department)
+                                        @foreach ($departments as $department)
                                             <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                        @empty
-                                            <option value="" disabled>No departments available</option>
-                                        @endforelse
+                                        @endforeach
                                     </select>
-                                    <span class="text-danger error-department_id custom-error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="province_id">Province</label>
-                                    <select class="form-control registration-modal-details" id="province_id" name="province_id" required>
-                                        <option value="">Select Province</option>
-                                        @forelse ($provinces as $province)
-                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                        @empty
-                                            <option value="" disabled>No provinces available</option>
-                                        @endforelse
-                                    </select>
-                                    <span class="text-danger error-province_id custom-error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="district_id">District</label>
-                                    <select class="form-control registration-modal-details" id="district_id" name="district_id" required>
-                                        <option value="">Select District</option>
-                                        <option value="1">Gasabo</option>
-                                        <option value="6">Kicukiro</option>
-                                        <option value="11">Nyarugenge</option>
-                                    </select>
-                                    <span class="text-danger error-district_id custom-error"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="sector_id">Sector</label>
-                                    <select class="form-control registration-modal-details" id="sector_id" name="sector_id" required>
-                                        <option value="">Select Sector</option>
-                                        <option value="1">Sector A</option>
-                                        <option value="2">Sector B</option>
-                                        <option value="3">Sector C</option>
-                                    </select>
-                                    <span class="text-danger error-sector_id custom-error"></span>
+                                    <span class="custom-error error-department_id"></span>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="cv">Upload CV</label>
-                                    <input type="file" class="form-control registration-modal-details" id="cv" name="cv" accept=".pdf,.doc,.docx">
-                                    <span class="text-danger error-cv custom-error"></span>
+                                    <label for="province_id" class="form-label">Province</label>
+                                    <select class="form-control" id="province_id" name="province_id" required>
+                                        <option value="">Select Province</option>
+                                        @foreach ($provinces as $province)
+                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="custom-error error-province_id"></span>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="degree">Upload Degree</label>
-                                    <input type="file" class="form-control registration-modal-details" id="degree" name="degree" accept=".pdf,.doc,.docx">
-                                    <span class="text-danger error-degree custom-error"></span>
+                                    <label for="district_id" class="form-label">District</label>
+                                    <select class="form-control" id="district_id" name="district_id" required>
+                                        <option value="">Select District</option>
+                                    </select>
+                                    <span class="custom-error error-district_id"></span>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="id_doc">Upload ID Document</label>
-                                    <input type="file" class="form-control registration-modal-details" id="id_doc" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
-                                    <span class="text-danger error-id_doc custom-error"></span>
+                                    <label for="sector_id" class="form-label">Sector</label>
+                                    <select class="form-control" id="sector_id" name="sector_id" required>
+                                        <option value="">Select Sector</option>
+                                    </select>
+                                    <span class="custom-error error-sector_id"></span>
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cv" class="form-label">Upload CV</label>
+                                    <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx">
+                                    <small class="form-text text-muted">PDF, DOC, DOCX (Max 2MB)</small>
+                                    <span class="custom-error error-cv"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="degree" class="form-label">Upload Degree</label>
+                                    <input type="file" class="form-control" id="degree" name="degree" accept=".pdf,.doc,.docx">
+                                    <small class="form-text text-muted">PDF, DOC, DOCX (Max 2MB)</small>
+                                    <span class="custom-error error-degree"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="id_doc" class="form-label">Upload ID Document</label>
+                                    <input type="file" class="form-control" id="id_doc" name="id_doc" accept=".pdf,.jpg,.jpeg,.png">
+                                    <small class="form-text text-muted">PDF, JPG, JPEG, PNG (Max 2MB)</small>
+                                    <span class="custom-error error-id_doc"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary w-100 py-3">Submit Application</button>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Submit Registration</button>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-                <div class="modal-header bg-success text-white" style="border-radius: 20px 20px 0 0;">
-                    <h5 class="modal-title" id="successModalLabel">Registration Successful</h5>
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">Application Successful</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4 text-center">
-                    <p class="mb-4" id="successMessage"></p>
+                    <p id="successMessage"></p>
                     <button type="button" class="btn btn-success w-100 py-2" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="{{ asset('lib/wow/wow.min.js') }}" defer></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}" defer></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}" defer></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
     <script>
-    $(document).ready(function() {
-        $('.header-carousel').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 6000,
-            responsive: {
-                0: { items: 1 },
-                600: { items: 1 },
-                1000: { items: 1 }
-            }
-        });
+        $(document).ready(function() {
+            $('.header-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: false, // Removed < > arrows
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 7000,
+                items: 1
+            });
 
-        $('a.nav-link, a.btn-link, .btn-register').on('click', function(e) {
-            if (this.hash !== "") {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 800, function() {
-                    window.location.hash = this.hash;
-                });
-            }
-        });
+            $('#spinner').hide();
+            new WOW().init();
 
-        particlesJS('parallax', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#38b2ac' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
-                size: { value: 3, random: true, anim: { enable: false } },
-                line_linked: { enable: false },
-                move: { enable: true, speed: 2, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
-            },
-            interactivity: { detect_on: 'canvas', events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } } },
-            retina_detect: true
-        });
+            $('#registerModal').on('show.bs.modal', function() {
+                $('#newApplicationForm')[0].reset();
+                $('.custom-error').text('');
+                $('#register-success-message, #register-error-message').addClass('d-none');
+                $('#district_id').html('<option value="">Select District</option>');
+                $('#sector_id').html('<option value="">Select Sector</option>');
+            });
 
-        $("#spinner").removeClass("show");
-
-        new WOW().init();
-
-        $('#registerModal').on('show.bs.modal', function() {
-            $(this).find('.modal-dialog').css('opacity', '0').animate({ opacity: 1 }, 300);
-        });
-
-        $('#newRegistrationForm').on('submit', function(e) {
-            e.preventDefault();
-            $('.custom-error').text(''); // Clear all error messages
-            $('#register-success-message, #register-error-message').addClass('d-none');
-
-            var formData = new FormData(this);
-
-            $.ajax({
-                url: $(this).attr('action'),
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $('#spinner').addClass('show');
-                    $(this).find('button[type="submit"]').prop('disabled', true).text('Submitting...');
-                },
-                complete: function() {
-                    $('#spinner').removeClass('show');
-                    $(this).find('button[type="submit"]').prop('disabled', false).text('Submit Registration');
-                },
-                success: function(response) {
-                    $('#registerModal').modal('hide');
-                    $('#successMessage').text(response.message);
-                    $('#successModal').modal('show');
-                    setTimeout(function() {
-                        $('#successModal').modal('hide');
-                    }, 5000);
-                },
-                error: function(xhr) {
-                    $('#spinner').removeClass('show');
-                    if (xhr.status === 422) {
-                        var errors = xhr.responseJSON.errors;
-                        $('#register-error-message').addClass('d-none');
-                        if (errors['email']) {
-                            $('.error-email').text('This email is already in use. Please try a different one.');
+            $('#province_id').on('change', function() {
+                var provinceId = $(this).val();
+                $('#district_id').html('<option value="">Select District</option>');
+                $('#sector_id').html('<option value="">Select Sector</option>');
+                $('.error-district_id, .error-sector_id').text('');
+                if (provinceId) {
+                    $.ajax({
+                        url: '/districts?province_id=' + provinceId,
+                        type: 'GET',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(data) {
+                            if (data.length === 0) {
+                                $('.error-district_id').text('No districts available for this province.');
+                            } else {
+                                $.each(data, function(key, district) {
+                                    $('#district_id').append(`<option value="${district.id}">${district.name}</option>`);
+                                });
+                            }
+                        },
+                        error: function(xhr) {
+                            $('.error-district_id').text('Error loading districts: ' + xhr.statusText);
+                            console.error('Districts AJAX error:', xhr);
                         }
-                        if (errors['phone']) {
-                            $('.error-phone').text('This phone number is already registered. Please use another.');
-                        }
-                        if (errors['id_number']) {
-                            $('.error-id_number').text('This ID number is already taken. Please provide a unique one.');
-                        }
-                        if (errors['names'] || errors['department_id'] || errors['province_id'] || errors['district_id'] || errors['sector_id'] || errors['cv'] || errors['degree'] || errors['id_doc']) {
-                            $.each(errors, function(key, value) {
-                                if (key !== 'email' && key !== 'phone' && key !== 'id_number') {
-                                    $('.error-' + key).text(value[0]);
-                                }
-                            });
-                        }
-                    } else {
-                        $('#register-error-message').removeClass('d-none').text('An error occurred. Please try again later.');
-                    }
+                    });
                 }
             });
-        });
 
-        @if (session('success'))
-            $('#successModal').modal('show');
-        @endif
-    });
+            $('#district_id').on('change', function() {
+                var districtId = $(this).val();
+                $('#sector_id').html('<option value="">Select Sector</option>');
+                $('.error-sector_id').text('');
+                if (districtId) {
+                    $.ajax({
+                        url: '/sectors?district_id=' + districtId,
+                        type: 'GET',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(data) {
+                            if (data.length === 0) {
+                                $('.error-sector_id').text('No sectors available for this district.');
+                            } else {
+                                $.each(data, function(key, sector) {
+                                    $('#sector_id').append(`<option value="${sector.id}">${sector.name}</option>`);
+                                });
+                            }
+                        },
+                        error: function(xhr) {
+                            $('.error-sector_id').text('Error loading sectors: ' + xhr.statusText);
+                            console.error('Sectors AJAX error:', xhr);
+                        }
+                    });
+                }
+            });
+
+            function validateFileSize(file, field, maxSizeMB) {
+                if (file && file.size > maxSizeMB * 1024 * 1024) {
+                    return `File size must not exceed ${maxSizeMB}MB`;
+                }
+                return '';
+            }
+
+            function validatePhone(phone) {
+                const regex = /^(?:\+250|07)[0-9]{8}$/;
+                return regex.test(phone) ? '' : 'Phone must start with +250 or 07 followed by 8 digits';
+            }
+
+            $('#phone').on('input', function() {
+                var phone = $(this).val();
+                var error = validatePhone(phone);
+                $('.error-phone').text(error);
+            });
+
+            $('#cv, #degree, #id_doc').on('change', function() {
+                var error = validateFileSize(this.files[0], $(this).attr('id'), 2);
+                $('.error-' + $(this).attr('id')).text(error);
+            });
+
+            $('#newApplicationForm').on('submit', function(e) {
+                e.preventDefault();
+                $('.custom-error').text('');
+                $('#register-success-message, #register-error-message').addClass('d-none');
+
+                var formData = new FormData(this);
+                var errors = [];
+                ['cv', 'degree', 'id_doc'].forEach(function(field) {
+                    var file = $(`#${field}`)[0].files[0];
+                    var error = validateFileSize(file, field, 2);
+                    if (error) errors.push(error);
+                });
+
+                var phoneError = validatePhone($('#phone').val());
+                if (phoneError) {
+                    errors.push(phoneError);
+                    $('.error-phone').text(phoneError);
+                }
+
+                if (errors.length) {
+                    $('#register-error-message').removeClass('d-none').text(errors.join(', '));
+                    return;
+                }
+
+                $.ajax({
+                    url: '{{ route('applications.store') }}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function() {
+                        $('#spinner').show();
+                        $('#newApplicationForm button[type="submit"]').prop('disabled', true).text('Submitting...');
+                    },
+                    complete: function() {
+                        $('#spinner').hide();
+                        $('#newApplicationForm button[type="submit"]').prop('disabled', false).text('Submit Application');
+                    },
+                    success: function(response) {
+                        $('#newApplicationForm')[0].reset();
+                        $('#registerModal').modal('hide');
+                        $('#successMessage').text(response.message || 'Application submitted successfully!');
+                        $('#successModal').modal('show');
+                        setTimeout(function() {
+                            $('#successModal').modal('hide');
+                        }, 5000);
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            var errors = xhr.responseJSON.errors;
+                            $.each(errors, function(key, value) {
+                                $('.error-' + key.replace('.', '_')).text(value[0]);
+                            });
+                        } else {
+                            $('#register-error-message').removeClass('d-none').text('An error occurred: ' + (xhr.responseJSON?.error || xhr.statusText));
+                            console.error('Form submission error:', xhr);
+                        }
+                    }
+                });
+            });
+
+            $('#contactForm').on('submit', function(e) {
+                e.preventDefault();
+                $('.custom-error').text('');
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '{{ route('contact.submit') }}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function() {
+                        $('#spinner').show();
+                        $('#contactForm button[type="submit"]').prop('disabled', true).text('Sending...');
+                    },
+                    complete: function() {
+                        $('#spinner').hide();
+                        $('#contactForm button[type="submit"]').prop('disabled', false).text('Send Message');
+                    },
+                    success: function(response) {
+                        $('#contactForm')[0].reset();
+                        alert(response.message || 'Message sent successfully!');
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            var errors = xhr.responseJSON.errors;
+                            $.each(errors, function(key, value) {
+                                $('.error-' + key).text(value[0]);
+                            });
+                        } else {
+                            alert('An error occurred: ' + (xhr.responseJSON?.error || xhr.statusText));
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
